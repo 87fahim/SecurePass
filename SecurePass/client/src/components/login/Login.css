@@ -1,0 +1,132 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling with Ubuntu-inspired theme */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color-primary);
+    line-height: 1.6;
+}
+
+/* Main container styling */
+.home {
+    text-align: center;
+    padding: 20px;
+    max-width: 500px;
+    margin: 50px auto;
+    background: var(--neutral-color-light);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Page heading */
+.home h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* Paragraph description */
+.home p {
+    color: var(--text-color-secondary);
+    margin-bottom: 20px;
+}
+
+/* Sign-in form styling */
+.sign-in-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.sign-in-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color-primary);
+}
+
+.sign-in-form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.sign-in-form input:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+.sign-in-form .sign-in-button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: var(--primary-color);
+    color: var(--text-color-alternative);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.sign-in-form .sign-in-button:hover {
+    background-color: var(--primary-color-light);
+}
+
+/* Link styling */
+.register-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.register-button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: var(--primary-color);
+    color: var(--text-color-alternative);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.register-button:hover {
+    background-color: var(--primary-color-light);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .home {
+        padding: 15px;
+    }
+
+    .sign-in-form {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .register-button,
+    .sign-in-form .sign-in-button {
+        font-size: 0.9rem;
+    }
+}
+.success-message {
+    color: var(--success-color);
+    background-color: var(--neutral-color-light);
+    border: none;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1rem;
+}

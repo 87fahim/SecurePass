@@ -1,0 +1,160 @@
+/* General reset for padding and margins */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling with Ubuntu theme */
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    background-color: var(--background-color);
+    color: var(--text-color-primary);
+    line-height: 1.6;
+}
+
+/* Main container for the create-account page */
+.create-account {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: var(--neutral-color-light);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Paragraph description text */
+.create-account p {
+    text-align: center;
+    color: var(--text-color-secondary);
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels for inputs */
+form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color-primary);
+}
+
+/* Inputs styling */
+form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--primary-color-light);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease-in-out;
+    background-color: var(--neutral-color-light);
+    color: var(--text-color-primary);
+}
+
+/* Focus effect on inputs */
+form input:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+/* Error messages for validation */
+.error-message {
+    color: var(--error-color);
+    font-size: 0.875rem;
+    margin-bottom: 10px;
+}
+
+/* Password strength section */
+.password-strength {
+    font-size: 0.875rem;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+.password-strength span {
+    font-weight: bold;
+}
+
+.password-strength span.weak {
+    color: var(--error-color);
+}
+
+.password-strength span.moderate {
+    color: var(--secondary-color);
+}
+
+.password-strength span.strong {
+    color: var(--success-color);
+}
+
+/* Submit button */
+.register-button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background: var(--primary-color);
+    color: var(--text-color-alternative);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Hover effect for buttons */
+.register-button:hover {
+    background: var(--primary-color-light);
+}
+
+/* Disabled button styling */
+button:disabled {
+    background: var(--neutral-color-dark);
+    cursor: not-allowed;
+}
+
+/* API response section */
+.api-response {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.api-response.success {
+    background-color: var(--success-color);
+    color: var(--text-color-alternative);
+    border: 1px solid darken(var(--success-color), 10%);
+}
+
+.api-response.error {
+    background-color: var(--error-color);
+    color: var(--text-color-alternative);
+    border: 1px solid darken(var(--error-color), 10%);
+}
+
+/* Link styling for "Already have an account?" */
+.have-account {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.have-account button {
+    background: var(--primary-color);
+    color: var(--text-color-alternative);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    text-decoration: none; /* Removes underline */
+}
+
+.have-account button:hover {
+    background: var(--primary-color-light);
+}
