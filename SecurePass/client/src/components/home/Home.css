@@ -1,49 +1,52 @@
-/* General Styling */
-body {
+
+.home-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - var(--navbar-height));
+    background-color: var(--primary-bg-color);
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    color: var(--text-color-primary);
-    background-color: var(--neutral-color-light);
+    padding: 20px;
 }
 
 .home {
     text-align: center;
     padding: 20px;
+    background-color: var(--alternative-bg-color);
+    width: 50%;
+    box-shadow: 3px 3px 8px var(--primary-shadow-color);
+    border-radius: 10px;
+    color: var(--primary-font-color);
 }
 
-/* Header Section */
+:root {
+    --navbar-height: 60px;
+}
+
 .home-header {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-color-light));
-    color: var(--background-color);
+    background: linear-gradient(135deg, var(--primary-bg-color), var(--secondary-button-bg-color));
+    color: var(--secondary-bg-color);
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
 }
 
-.home-header h1 {
-    font-size: 2.5rem;
-    margin: 0;
-    color: var(--text-color-alternative);
-}
-
-/* Intro Section */
 .intro-section {
-    background-color: var(--background-color);
+    background-color: var(--secondary-bg-color);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.intro-section p {
+/* .intro-section p {
     font-size: 1.2rem;
     margin: 0;
-    color: var(--text-color-secondary);
-}
+    color: var(--secondary-font-color);
+} */
 
-/* Features Section */
 .features-section {
-    background-color: var(--background-color);
+    background-color: var(--secondary-bg-color);
     border-radius: 10px;
     padding: 20px;
     margin: 20px auto;
@@ -52,7 +55,7 @@ body {
 }
 
 .features-section h2 {
-    color: var(--primary-color);
+    color: var(--primary-font-color);
     margin-bottom: 15px;
 }
 
@@ -61,14 +64,13 @@ body {
     padding: 0;
     font-size: 1rem;
     line-height: 1.8;
-    color: var(--text-color-primary);
+    color: var(--secondary-font-color);
 }
 
 .features-section li {
     margin-bottom: 10px;
 }
 
-/* CTA Section */
 .cta-section {
     margin: 20px 0;
 }
@@ -85,31 +87,39 @@ body {
 }
 
 .cta-button.primary {
-    background-color: var(--primary-color);
-    color: var(--background-color);
+    background-color: var(--primary-button-bg-color);
+    color: var(--primary-button-font-color);
     border: none;
 }
 
 .cta-button.primary:hover {
-    background-color: var(--primary-color-light);
+    background-color: var(--primary-highlight-color);
 }
 
 .cta-button.secondary {
-    background-color: var(--neutral-color-light);
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
+    background-color: var(--primary-button-bg-color);
+    color: var(--primary-button-font-color);
+    border: none;
 }
 
 .cta-button.secondary:hover {
-    background-color: var(--neutral-color-dark);
-    color: var(--background-color);
+    background-color: var(--primary-highlight-color);
 }
 
-/* Demo Section */
+.cta-button.register {
+    background-color: var(--primary-button-bg-color);
+    color: var(--primary-button-font-color);
+    border: none;
+}
+
+.cta-button.register:hover {
+    background-color: var(--primary-highlight-color);
+}
+
 .demo-section {
     margin: 20px auto;
     max-width: 600px;
-    background: var(--background-color);
+    background: var(--secondary-bg-color);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -117,18 +127,14 @@ body {
 
 .demo-section h2 {
     margin-bottom: 15px;
-    color: var(--primary-color);
+    color: var(--primary-font-color);
 }
 
-.demo-section p {
-    font-size: 1rem;
-    margin-bottom: 15px;
-    color: var(--text-color-secondary);
-}
+
 
 .demo-button {
-    background-color: var(--success-color);
-    color: var(--background-color);
+    background-color: var(--primary-button-bg-color);
+    color: var(--primary-btn-color);
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 1rem;
@@ -138,12 +144,11 @@ body {
 }
 
 .demo-button:hover {
-    background-color: var(--primary-color);
+    background-color: var(--primary-highlight-color);
 }
 
-/* Footer */
 .home-footer {
     margin-top: 20px;
     font-size: 0.9rem;
-    color: var(--text-color-secondary);
+    color: var(--secondary-font-color);
 }

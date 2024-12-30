@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './CreateAccount.css';
+import './Register.css';
 import { Link, useNavigate } from 'react-router-dom';
 import PageTitle from '../pagetitle/PageTitle';
 
@@ -18,11 +18,11 @@ const CreateAccount = () => {
     const navigate = useNavigate();
 
     const handleChange = (e) => {
-        const { name, value } = e.target; // Correctly get the "name" attribute from inputs
+        const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
-        setErrors((prevErrors) => ({ ...prevErrors, [name]: '' })); // Clear field-specific errors
+        setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
 
-        if (name === 'password') updatePasswordStrength(value); // Update password strength on input
+        if (name === 'password') updatePasswordStrength(value);
     };
 
     const validateForm = () => {
@@ -44,14 +44,18 @@ const CreateAccount = () => {
     };
 
     const updatePasswordStrength = (password) => {
-        if (password.length === 0) {
-            setPasswordStrength('');
-        } else if (password.length < 6) {
-            setPasswordStrength('Weak');
-        } else if (/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$/.test(password)) {
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumbers = /\d/.test(password);
+        const hasSpecialChars = /[@$!%*?&]/.test(password);
+        const isLongEnough = password.length >= 8;
+
+        if (isLongEnough && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChars) {
             setPasswordStrength('Strong');
-        } else {
+        } else if (isLongEnough && (hasUpperCase || hasLowerCase) && (hasNumbers || hasSpecialChars)) {
             setPasswordStrength('Moderate');
+        } else {
+            setPasswordStrength('Weak');
         }
     };
 
@@ -60,35 +64,36 @@ const CreateAccount = () => {
 
         // if (!validateForm()) return;
 
-        setIsSubmitting(true); // Show loader during submission
-        console.log('Sending data to backend:\n', formData);
+        setIsSubmitting(true);
+
         try {
+            // Prepare data to send without client-side hashing
+            const dataToSend = { ...formData };
+
             const response = await fetch('http://localhost:5050/api/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(dataToSend),
             });
 
             if (response.ok) {
                 const data = await response.json();
                 setApiResponse({ success: true, message: data.message });
-                navigate('/login', {state:{message:'Account was created successfully!'}})
-            }else if(response.status === 409){
+                navigate('/login', { state: { message: 'Account was created successfully!' } });
+            } else {
                 const errorData = await response.json();
-                setApiResponse({ success: false, message: errorData.message });
-                // navigate("/login", { state: { message: "Account already exists. Please log in." } });
-            } 
-           
+                setApiResponse({ success: false, message: errorData.message || 'An error occurred.' });
+            }
         } catch (error) {
-            setApiResponse({ success: false, message: 'Something went wrong. Please try again later.' });
+            setApiResponse({ success: false, message: 'Network error. Please try again later.' });
         } finally {
-            setIsSubmitting(false); 
+            setIsSubmitting(false);
         }
     };
 
     return (
         <div className="create-account">
-            <PageTitle title="Register Account"></PageTitle>
+            <PageTitle title="✍️ Register" style="simple" />
             <p>Welcome to the registration page. Please fill out your details below.</p>
 
             <form onSubmit={handleSubmit}>
@@ -155,9 +160,9 @@ const CreateAccount = () => {
                 </div>
             )}
 
-            <p>Already have an account?</p>
+            <p className="have-account-text">Already have an account?</p>
             <Link to="/login" className="have-account">
-                <button className="register-button">Login</button>
+                <button className="login-button-register-page">Login</button>
             </Link>
         </div>
     );

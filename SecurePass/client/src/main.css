@@ -2,58 +2,201 @@
 @tailwind components;
 @tailwind utilities;
 
-[data-theme="light"] {
-    --primary-color: #131313; 
-    --primary-color-light: #575757; 
-    --secondary-color: #e95420; 
-    --neutral-color-light: #f7f3f2; 
-    --neutral-color-dark: #252525; 
-    --background-color: #f7f3f2; 
-    --text-color-primary: #5f5e5f; 
-    --text-color-secondary: #303030; 
-    --text-color-alternative:var(--neutral-color-light);
-    --success-color: #4caf50; 
-    
-    --error-color: #e63946; 
-    --links: #0000EE;
-}
 
 [data-theme="purple"] {
-    --primary-color: #e2e2e2; 
-    --primary-color-light: #868686; 
-    --secondary-color: #e95420; 
-    --neutral-color-light: #3f0235;
-    --neutral-color-dark: #cca7c0; 
-    --background-color: #24011e; 
-    --text-color-primary: #999999; 
-    --text-color-secondary: #e7e7e7; 
-    --text-color-alternative:var(--neutral-color-light);
-    --success-color: #4caf50; 
-    
-    --error-color: #e63946; 
-    --links: #0000EE;
+    --primary-bg-color: #200024;
+    --secondary-bg-color: #311236;
+    --alternative-bg-color: #5f026b;
+
+    --primary-highlight-color: #631657;
+    --secondary-highlight-color: #740051;
+
+    --primary-font-color: #e2e2e2;
+    --secondary-font-color: #a1a1a1;
+
+    --primary-button-bg-color: #b30077;
+    --secondary-button-bg-color: #7c0057;
+    --primary-button-font-color: #eeeeee;
+    --secondary-button-font-color: #a0a0a0;
+
+    --primary-border-color: #D1CCE1;
+    --secondary-border-color: orange;
+
+    --primary-input-bg-color: #EEEEEE;
+    --secondary-input-bg-color: #DDDDDD;
+    --primary-input-text-color: #000000;
+    --secondary-input-text-color: #333333;
+
+    --primary-error-text-color: #e53935;
+    --secondary-error-text-color: #b71c1c;
+    --primary-error-bg-color: #ffe6e6;
+    --secondary-error-bg-color: #ffcccc;
+    --error-border-color: #e53935;
+
+    --primary-success-text-color: #B7E0BB;
+    --secondary-success-text-color: #A7D6B6;
+    --primary-success-bg-color: #2F2233;
+    --secondary-success-bg-color: #45364A;
+
+    --primary-shadow-color: #3d3d3d;
+    --secondary-shadow-color: #2b2b2b;
 }
+
 [data-theme="dark"] {
-    --primary-color: #ebebeb; 
-    --primary-color-light: #999999; 
-    --secondary-color: #e95420; 
-    --neutral-color-light: #303030; 
-    --neutral-color-dark: #2c001e; 
-    --background-color: #181818; 
-    --text-color-primary: #999999; 
-    --text-color-secondary: #e7e7e7; 
-    --text-color-alternative:var(--neutral-color-light);
-    --success-color: #4caf50; 
-    --input-border-color: #999999;
+    --primary-bg-color: #000000;
+    --secondary-bg-color: #242424;
+    --alternative-bg-color: #3b3b3b;
+
+    --primary-highlight-color: #0300b6;
+    --secondary-highlight-color: #080075;
+
+    --primary-font-color: #e2e2e2;
+    --secondary-font-color: #a1a1a1;
     
-    --error-color: #e63946; 
-    --links: #0000EE;
+    --primary-button-bg-color: #0044ff;
+    --secondary-button-bg-color: #00369b;
+    --primary-button-font-color: #eeeeee;
+    --secondary-button-font-color: #a0a0a0;
+
+    --primary-border-color: #d8d8d8;
+    --secondary-border-color: orange;
+
+    --primary-input-bg-color: #EEEEEE;
+    --secondary-input-bg-color: #DDDDDD;
+    --primary-input-text-color: #000000;
+    --secondary-input-text-color: #333333;
+
+    --primary-error-text-color: #e53935;
+    --secondary-error-text-color: #b71c1c;
+    --primary-error-bg-color: #ffe6e6;
+    --secondary-error-bg-color: #ffcccc;
+    --error-border-color: #e53935;
+
+    --primary-success-text-color: #008000;
+    --secondary-success-text-color: #006600;
+    --primary-success-bg-color: #E6FFE6;
+    --secondary-success-bg-color: #CCFFCC;
+    
+    --primary-shadow-color: #646464;
+    --secondary-shadow-color: #2b2b2b;
+}
+
+[data-theme="light"] {
+    --primary-bg-color: #ffffff;
+    --secondary-bg-color: #c2c2c2;
+    --alternative-bg-color: #f2f2f2;
+
+    --primary-highlight-color: #0300b6;
+    --secondary-highlight-color: #080075;
+
+    --primary-font-color: #000000;
+    --secondary-font-color: #4a4a4a;
+
+    --primary-button-bg-color: #0044ff;
+    --secondary-button-bg-color: #00369b;
+    --primary-button-font-color: #eeeeee;
+    --secondary-button-font-color: #a0a0a0;
+
+
+    --primary-border-color: #cccccc;
+    --secondary-border-color: orange;
+
+
+    --primary-input-bg-color: #ffffff;
+    --secondary-input-bg-color: #f7f7f7;
+    --primary-input-text-color: #000000;
+    --secondary-input-text-color: #333333;
+
+    --primary-error-text-color: #d32f2f;
+    --secondary-error-text-color: #b71c1c;
+    --primary-error-bg-color: #ffebee;
+    --secondary-error-bg-color: #ffcdd2;
+    --error-border-color: #d32f2f;
+
+    --primary-success-text-color: #388e3c;
+    --secondary-success-text-color: #2e7d32;
+    --primary-success-bg-color: #e8f5e9;
+    --secondary-success-bg-color: #c8e6c9;
+
+    --primary-shadow-color: #e4e4e4;
+    --secondary-shadow-color: #2b2b2b;
 }
 
 body {
-    background-color: var(--background-color);
+    background-color: var(--primary-bg-color);
     color: var(--text-color-primary);
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+input, button {
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: none;
+    box-sizing: border-box;
+}
+input {
+    transition: border-color 0.3s ease-in-out;
+    background-color: var(--secondary-input-bg-color);
+    color: var(--primary-input-text-color);
+}
+
+input:focus {
+    border-bottom: 3px solid var(--secondary-border-color) !important;
+    background-color: var(--primary-input-bg-color) !important;
+    outline: none;
+}
+
+
+button {
+    background-color: var(--primary-button-bg-color);
+    color: var(--primary-button-font-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: var(--primary-highlight-color);
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+p {
+    font-size: 1rem;
+    margin: 5px;
+    color: var(--secondary-font-color);
+}
+
+label{
+    margin: 5px;
+    font-weight: bold;
+    color: var(--secondary-font-color);
+    width: 100%;
+}
+
+.error-message {
+    color: var(--primary-error-text-color);
+    background-color: var(--primary-error-bg-color);
+    border: 1px solid var(--primary-error-text-color);
+    padding: 10px;
+    border: 1px solid color;
+    border-radius: 5px;
+    margin: 5px;
+    text-align: center;
+    width: 100%;
+}
+

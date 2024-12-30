@@ -1,0 +1,92 @@
+
+.create-account {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: var(--secondary-bg-color);
+    border-radius: 8px;
+    box-shadow: 3px 3px 6px var(--primary-shadow-color);
+
+}
+
+.register-button{
+    margin-top: 30px;
+}
+.password-strength {
+    margin: 0px 5px 10px 5px;
+
+    font-size: 1rem;
+    color: var(--primary-font-color);
+}
+
+.password-strength span {
+    font-weight: bold;
+}
+
+.password-strength span {
+    color: var(--primary-error-text-color); /* Default weak color */
+}
+
+.password-strength span:contains('Moderate') {
+    color: var(--secondary-highlight-color); /* Moderate strength color */
+}
+
+.password-strength span:contains('Strong') {
+    color: var(--primary-success-text-color); /* Strong strength color */
+}
+
+/* API response message styling */
+.api-response {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-align: center;
+    width: 100%;
+}
+
+.api-response.success {
+    background-color: var(--primary-success-bg-color);
+    color: var(--primary-success-text-color);
+    border: 1px solid var(--primary-success-text-color);
+}
+
+.api-response.error {
+    background-color: var(--primary-error-bg-color);
+    color: var(--primary-error-text-color);
+    border: 1px solid var(--primary-error-text-color);
+}
+
+/* "Have an account" text and link */
+.have-account-text {
+    margin: 10px 0;
+    text-align: center;
+    color: var(--secondary-font-color);
+}
+
+.have-account {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .create-account {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    button,
+    input {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .password-strength {
+        font-size: 0.85rem;
+
+    }
+}

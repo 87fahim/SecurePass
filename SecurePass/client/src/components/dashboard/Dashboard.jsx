@@ -1,38 +1,35 @@
-import React from 'react';
-import './Dashboard.css';
+import React, { useState } from "react";
+import LeftPanel from "./leftpanel/LeftPanel";
+import MyProfile from "./leftpanel/MyProfile";
+import Passwords from "./leftpanel/Passwords";
+import Settings from "./leftpanel/Settings";
+import Help from "./leftpanel/Help";
+import "./Dashboard.css";
 
-const HomeLoggedIn = () => {
+const Dashboard = () => {
+  const [activeTab, setActiveTab] = useState("My Profile");
+
+  const renderActiveTab = () => {
+    switch (activeTab) {
+      case "My Profile":
+        return <MyProfile />;
+      case "Passwords":
+        return <Passwords />;
+      case "Settings":
+        return <Settings />;
+      case "Help":
+        return <Help />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="home-container">    
-      <div className="search-section">
-        <input type="text" placeholder="Search passwords..." className="search-bar" />
-      </div>
-      <div className="quick-actions">
-        <button className="action-button">Add Password</button>
-        <button className="action-button">Generate Password</button>
-      </div>
-      <div className="content-section">
-        <div className="recent-activity">
-          <h2>Recent Activity</h2>
-          <ul>
-            <li>Gmail (Last updated 2 days ago)</li>
-            <li>Bank Account</li>
-          </ul>
-        </div>
-        <div className="favorites">
-          <h2>Favorite Logins</h2>
-          <ul>
-            <li>Facebook</li>
-            <li>GitHub</li>
-          </ul>
-        </div>
-      </div>
-      <footer className="home-footer">
-        <button className="settings-button">Manage Settings</button>
-        <button className="logout-button">Logout</button>
-      </footer>
+    <div className="dashboard">
+      <LeftPanel onTabSelect={setActiveTab} />
+      <div className="dashboard-content">{renderActiveTab()}</div>
     </div>
   );
 };
 
-export default HomeLoggedIn;
+export default Dashboard;
