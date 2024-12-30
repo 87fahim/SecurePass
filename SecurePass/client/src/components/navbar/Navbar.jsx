@@ -5,8 +5,7 @@ import ThemeOption from '../themes/ThemeOption';
 
 const Navbar = () => {
     const location = useLocation();
-
-    const isActive = (path) => location.pathname === path ? 'active' : '';
+    const isActive = (path) => location.pathname === path ? 'active' : 'inactive';
 
     return (
         <nav className="navbar">

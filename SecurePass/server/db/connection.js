@@ -1,7 +1,7 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 import dotenv from "dotenv";
-dotenv.config({ path: './server/config.env' });
+dotenv.config({ path: './config.env' });
 console.log('Current Directory ', process.cwd())
 const uri = process.env.ATLAS_URI || "NO ATLAS URI!!!";
 console.log("====>", uri)
@@ -25,6 +25,6 @@ try {
   console.error(err);
 }
 
-let db = client.db("Manager");
+let db = client.db("SecurePass");
 
 export default db;
