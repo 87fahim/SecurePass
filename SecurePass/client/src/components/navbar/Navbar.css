@@ -11,13 +11,19 @@
     padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
+.app-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+}
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: bold;
     letter-spacing: 1px;
 }
-
+.navbar-brand-link{
+    display: flex;
+}
 .navbar-links {
     list-style: none;
     display: flex;

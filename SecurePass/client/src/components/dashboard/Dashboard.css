@@ -12,6 +12,7 @@
   background-color: var(--primary-bg-color);
   overflow-y: auto;
   border-left: 1px solid orange;
+  opacity: 0.9;
 }
 
 

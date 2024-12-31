@@ -92,78 +92,80 @@ const CreateAccount = () => {
     };
 
     return (
-        <div className="create-account">
-            <PageTitle title="✍️ Register" style="simple" />
-            <p>Welcome to the registration page. Please fill out your details below.</p>
+        <div className='register-wrapper'>
+            <div className="create-account">
+                <PageTitle title="✍️ Register" style="simple" />
+                <p>Welcome to the registration page. Please fill out your details below.</p>
 
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username</label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    placeholder="Enter your username"
-                    required
-                />
-                {errors.username && <p className="error-message">{errors.username}</p>}
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="username">Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleChange}
+                        placeholder="Enter your username"
+                        required
+                    />
+                    {errors.username && <p className="error-message">{errors.username}</p>}
 
-                <label htmlFor="email">Email</label>
-                <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Enter your email"
-                    required
-                />
-                {errors.email && <p className="error-message">{errors.email}</p>}
+                    <label htmlFor="email">Email</label>
+                    <input
+                        type="text"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="Enter your email"
+                        required
+                    />
+                    {errors.email && <p className="error-message">{errors.email}</p>}
 
-                <label htmlFor="password">Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder="Enter your password"
-                    required
-                />
-                {errors.password && <p className="error-message">{errors.password}</p>}
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        placeholder="Enter your password"
+                        required
+                    />
+                    {errors.password && <p className="error-message">{errors.password}</p>}
 
-                <div className="password-strength">
-                    Password Strength: <span>{passwordStrength}</span>
-                </div>
+                    <div className="password-strength">
+                        Password Strength: <span>{passwordStrength}</span>
+                    </div>
 
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    placeholder="Confirm your password"
-                    required
-                />
-                {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
+                        placeholder="Confirm your password"
+                        required
+                    />
+                    {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
 
-                <button type="submit" className="register-button" disabled={isSubmitting}>
-                    {isSubmitting ? 'Registering...' : 'Register'}
-                </button>
-            </form>
+                    <button type="submit" className="register-button" disabled={isSubmitting}>
+                        {isSubmitting ? 'Registering...' : 'Register'}
+                    </button>
+                </form>
 
-            {apiResponse && (
-                <div className={`api-response ${apiResponse.success ? 'success' : 'error'}`}>
-                    {apiResponse.message}
-                </div>
-            )}
+                {apiResponse && (
+                    <div className={`api-response ${apiResponse.success ? 'success' : 'error'}`}>
+                        {apiResponse.message}
+                    </div>
+                )}
 
-            <p className="have-account-text">Already have an account?</p>
-            <Link to="/login" className="have-account">
-                <button className="login-button-register-page">Login</button>
-            </Link>
+                <p className="have-account-text">Already have an account?</p>
+                <Link to="/login" className="have-account">
+                    <button className="login-button-register-page">Login</button>
+                </Link>
+            </div>
         </div>
     );
 };

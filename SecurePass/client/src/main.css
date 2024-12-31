@@ -4,6 +4,7 @@
 
 
 [data-theme="purple"] {
+    --primary-bg-color-rgb: 18, 52, 86;
     --primary-bg-color: #200024;
     --secondary-bg-color: #311236;
     --alternative-bg-color: #5f026b;
@@ -126,11 +127,18 @@
 }
 
 body {
-    background-color: var(--primary-bg-color);
+    /* background-color: var(--primary-bg-color); */
     color: var(--text-color-primary);
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    background-image: url('./assets/icons/Designer2.jpeg'); /* Path to your background image */
+    background-size: 500px; /* Ensure the image covers the whole background */
+    background-position: center; /* Center the image */
+    background-repeat: repeat; /* Prevent repetition */
+    background-attachment: fixed; /* Fixed background for a parallax effect */
+    position: relative; /* Ensure it works with overlays */
+    
 }
 
 form {
