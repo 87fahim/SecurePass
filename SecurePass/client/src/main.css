@@ -7,6 +7,7 @@
     --primary-bg-color: #200024;
     --secondary-bg-color: #311236;
     --alternative-bg-color: #5f026b;
+    --focus-color:#1abc9c;
 
     --primary-highlight-color: #631657;
     --secondary-highlight-color: #740051;
@@ -46,6 +47,7 @@
     --primary-bg-color: #000000;
     --secondary-bg-color: #242424;
     --alternative-bg-color: #3b3b3b;
+    --focus-color:orange;
 
     --primary-highlight-color: #0300b6;
     --secondary-highlight-color: #080075;
@@ -85,6 +87,7 @@
     --primary-bg-color: #ffffff;
     --secondary-bg-color: #c2c2c2;
     --alternative-bg-color: #f2f2f2;
+    --focus-color:orange;
 
     --primary-highlight-color: #0300b6;
     --secondary-highlight-color: #080075;

@@ -9,7 +9,6 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Access the message from the `state` object
     const message = location.state?.message || '';
 
     const processSignin = async (e) => {

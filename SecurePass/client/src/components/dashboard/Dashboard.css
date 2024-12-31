@@ -9,19 +9,9 @@
 .dashboard-content {
   flex: 1;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: var(--primary-bg-color);
   overflow-y: auto;
-  border-left: 1px solid #ddd;
+  border-left: 1px solid orange;
 }
 
-.dashboard-content h2 {
-  font-size: 24px;
-  color: #2c3e50;
-  margin-bottom: 20px;
-}
 
-.dashboard-content p {
-  font-size: 16px;
-  color: #7f8c8d;
-  line-height: 1.5;
-}
