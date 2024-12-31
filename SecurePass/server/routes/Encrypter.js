@@ -5,7 +5,7 @@ export default class Encrypter {
   static key = crypto.scryptSync('60482418eb47135921965d6d5bc9ee55', "salt", 32);
 
   static encrypt(clearText) {
-    const iv = crypto.randomBytes(32);
+    const iv = crypto.randomBytes(16);
     try {
       const cipher = crypto.createCipheriv(
         Encrypter.algorithm,

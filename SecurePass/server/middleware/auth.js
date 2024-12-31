@@ -8,9 +8,7 @@ export const verifyToken = (req, res, next) => {
   }
 
   try {
-    // console.log("Authorization token is recieved by server: ", token)
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    // console.log('Decoded token: ', decoded);
     req.user = decoded; // Attach user info to request
 
     next();
@@ -19,3 +17,6 @@ export const verifyToken = (req, res, next) => {
     res.status(401).json({ message: "Invalid token" });
   }
 };
+
+
+
