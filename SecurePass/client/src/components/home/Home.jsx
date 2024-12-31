@@ -26,7 +26,7 @@ const Home = () => {
                 </section>
 
                 <section className="cta-section">
-                    <Link to="/createaccount" className="cta-button primary">Create Account</Link>
+                   
                     <Link to="/login" className="cta-button secondary">Login</Link>
                     <Link to="/register" className='cta-button register'>Register</Link>
                 </section>
