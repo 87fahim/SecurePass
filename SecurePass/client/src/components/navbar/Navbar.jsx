@@ -28,6 +28,8 @@ const Navbar = () => {
                 <ThemeOption theme="light" />
                 <ThemeOption theme="dark" />
                 <ThemeOption theme="purple" />
+                <ThemeOption theme="green" />
+                <ThemeOption theme="blue" />
             </div>
         </nav>
     );
