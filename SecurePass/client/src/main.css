@@ -10,8 +10,8 @@
     --alternative-bg-color: #5f026b;
     --focus-color:#1abc9c;
 
-    --primary-highlight-color: #631657;
-    --secondary-highlight-color: #740051;
+    --primary-highlight-color: #c9c9c9;
+    --secondary-highlight-color: #e7e7e7;
 
     --primary-font-color: #e2e2e2;
     --secondary-font-color: #a1a1a1;
@@ -50,16 +50,16 @@
     --alternative-bg-color: #3b3b3b;
     --focus-color:orange;
 
-    --primary-highlight-color: #0300b6;
-    --secondary-highlight-color: #080075;
+    --primary-highlight-color: #c9c9c9;
+    --secondary-highlight-color: #e7e7e7;
 
     --primary-font-color: #e2e2e2;
     --secondary-font-color: #a1a1a1;
     
-    --primary-button-bg-color: #0044ff;
-    --secondary-button-bg-color: #00369b;
-    --primary-button-font-color: #eeeeee;
-    --secondary-button-font-color: #a0a0a0;
+    --primary-button-bg-color: #ececec;
+    --secondary-button-bg-color: #868686;
+    --primary-button-font-color: #000000;
+    --secondary-button-font-color: #3b3b3b;
 
     --primary-border-color: #d8d8d8;
     --secondary-border-color: orange;
@@ -90,14 +90,14 @@
     --alternative-bg-color: #f2f2f2;
     --focus-color:orange;
 
-    --primary-highlight-color: #0300b6;
-    --secondary-highlight-color: #080075;
+    --primary-highlight-color: #c9c9c9;
+    --secondary-highlight-color: #e7e7e7;
 
     --primary-font-color: #000000;
     --secondary-font-color: #4a4a4a;
 
-    --primary-button-bg-color: #0044ff;
-    --secondary-button-bg-color: #00369b;
+    --primary-button-bg-color: #000000;
+    --secondary-button-bg-color: #4d4d4d;
     --primary-button-font-color: #eeeeee;
     --secondary-button-font-color: #a0a0a0;
 
@@ -126,14 +126,98 @@
     --secondary-shadow-color: #2b2b2b;
 }
 
+[data-theme="green"] {
+    --primary-bg-color: #026846;
+    --secondary-bg-color: #034c34;
+    --alternative-bg-color: #028f60;
+
+    --focus-color: #039e69;
+
+    --primary-highlight-color: #c9c9c9;
+    --secondary-highlight-color: #e7e7e7;
+
+    --primary-font-color: #ffffff;
+    --secondary-font-color: #c9e5dc;
+
+    --primary-button-bg-color: #ffffff;
+    --secondary-button-bg-color: #8f8f8f;
+    --primary-button-font-color: #026846;
+    --secondary-button-font-color: #028f60;
+
+    --primary-border-color: #039e69;
+    --secondary-border-color: #e6f7f1;
+
+    --primary-input-bg-color: #ffffff;
+    --secondary-input-bg-color: #e6f7f1;
+    --primary-input-text-color: #026846;
+    --secondary-input-text-color: #034c34;
+
+    --primary-error-text-color: #d32f2f;
+    --secondary-error-text-color: #b71c1c;
+    --primary-error-bg-color: #ffebee;
+    --secondary-error-bg-color: #ffcdd2;
+    --error-border-color: #d32f2f;
+
+    --primary-success-text-color: #028c5a;
+    --secondary-success-text-color: #026846;
+    --primary-success-bg-color: #e6f7f1;
+    --secondary-success-bg-color: #c9e5dc;
+
+    --primary-shadow-color: #9fdcc6;
+    --secondary-shadow-color: #034c34;
+}
+
+[data-theme="blue"] {
+    --primary-bg-color: #1c7fa7;
+    --secondary-bg-color: #024b68;
+    --alternative-bg-color: #136985;
+
+    --focus-color: #0f5e76;
+
+    --primary-highlight-color: #c9c9c9;
+    --secondary-highlight-color: #e7e7e7;
+
+    --primary-font-color: #ffffff;
+    --secondary-font-color: #c9e6ef;
+
+    --primary-button-bg-color: #ffffff;
+    --secondary-button-bg-color: #8f8f8f;
+    --primary-button-font-color: #1c7fa7;
+    --secondary-button-font-color: #136985;
+
+    --primary-border-color: #0f5e76;
+    --secondary-border-color: #c9e6ef;
+
+    --primary-input-bg-color: #ffffff;
+    --secondary-input-bg-color: #c9e6ef;
+    --primary-input-text-color: #1c7fa7;
+    --secondary-input-text-color: #024b68;
+
+    --primary-error-text-color: #d32f2f;
+    --secondary-error-text-color: #b71c1c;
+    --primary-error-bg-color: #ffebee;
+    --secondary-error-bg-color: #ffcdd2;
+    --error-border-color: #d32f2f;
+
+    --primary-success-text-color: #1c7fa7;
+    --secondary-success-text-color: #024b68;
+    --primary-success-bg-color: #c9e6ef;
+    --secondary-success-bg-color: #83c5d6;
+
+    --primary-shadow-color: #a1d7e3;
+    --secondary-shadow-color: #024b68;
+}
+
+
+
 body {
     /* background-color: var(--primary-bg-color); */
     color: var(--text-color-primary);
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('./assets/icons/Designer2.jpeg'); /* Path to your background image */
-    background-size: 500px; /* Ensure the image covers the whole background */
+    background-image: url('./assets/icons/Designer10.jpeg'); /* Path to your background image */
+    background-size: 100%; /* Ensure the image covers the whole background */
     background-position: center; /* Center the image */
     background-repeat: repeat; /* Prevent repetition */
     background-attachment: fixed; /* Fixed background for a parallax effect */
