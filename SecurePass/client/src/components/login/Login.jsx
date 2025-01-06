@@ -1,8 +1,8 @@
 
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import  AuthContext  from "../context/AuthProvider";
 import "./Login.css";
+import useAuth from "../../hooks/userAuth";
 
 const Login = () => {
     const userRef = useRef();
@@ -11,10 +11,10 @@ const Login = () => {
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [errorMsg, setErrMsg] = useState("");
-    const { setAuth } = useContext(AuthContext);
+    const { setAuth } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-
+    const from = location.state?.from?.pathname || "/dashboard";
     const message = location.state?.message || "";
 
     useEffect(() => {
@@ -38,15 +38,20 @@ const Login = () => {
             // console.log(response.ok);
             // console.log("Server replied to login: ",result);
             if (response.ok) {
+
                 const accessToken = result.accessToken;
-                navigate("/dashboard");
-                setAuth({ username, password, accessToken});
-            } else if(response.status ===400){
+                setAuth({ username, password, accessToken });
+                setUserName('');
+                setPassword('');
+                console.log(from);
+                navigate(from, { replace: true });
+
+            } else if (response.status === 400) {
                 setErrMsg(result.err || "Missing Username or Password");
-            } 
+            }
             else if (response.status === 401) {
                 setErrMsg(result.error || "Invalid credentials. Please try again.");
-            } 
+            }
         } catch (err) {
             setErrMsg("Login failed. Please check your credentials and try again.");
         }

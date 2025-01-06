@@ -1,0 +1,51 @@
+/* Center the content on the page */
+.notfound-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  /* Heading style */
+  .notfound-container h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #ff6f61;
+  }
+  
+  /* Paragraph style */
+  .notfound-container p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #666;
+  }
+  
+  /* Links container */
+  .notfound-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  /* Individual link styling */
+  .notfound-links a {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #007bff;
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover effect for links */
+  .notfound-links a:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
