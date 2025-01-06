@@ -1,10 +1,11 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
-
 import dotenv from "dotenv";
 dotenv.config({ path: './config.env' });
-console.log('Current Directory ', process.cwd())
+
+// console.log('Current Directory ', process.cwd());
 const uri = process.env.ATLAS_URI || "NO ATLAS URI!!!";
-console.log("====>", uri)
+// console.log("====>", uri);
+
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,

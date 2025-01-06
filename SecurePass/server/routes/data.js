@@ -10,11 +10,12 @@ const router = express.Router();
 router.post("/", verifyToken, async (req, res) => {
   try {
     const { dataUsername, dataPassword, dataWebsite, dataNotes } = req.body;
-
+    // console.log("Adding data to db: ", dataUsername, dataPassword, dataWebsite, dataNotes );
     const encryptedUsername = Encrypter.encrypt(dataUsername);
     const encryptedPassword = Encrypter.encrypt(dataPassword);
     const encryptedWebsite = Encrypter.encrypt(dataWebsite);
     const encryptedNotes = Encrypter.encrypt(dataNotes);
+
     if (
       typeof encryptedUsername !== "string" ||
       typeof encryptedPassword !== "string" ||
@@ -28,9 +29,9 @@ router.post("/", verifyToken, async (req, res) => {
     }
     console.log(encryptedUsername, encryptedPassword, encryptedWebsite,encryptedNotes )
     const dataCollection = db.collection("data");
-
+    // console.log(req.user.id);
     const result = await dataCollection.insertOne({
-      username: req.user.username,
+      username: req.user.id,
       dataUsername: encryptedUsername,
       dataPassword: encryptedPassword,
       dataWebsite: encryptedWebsite,
@@ -49,13 +50,17 @@ router.post("/", verifyToken, async (req, res) => {
 });
 
 // Get all data entries for the authenticated user
-router.get("/", verifyToken, async (req, res) => {
+router.get("/all", verifyToken, async (req, res) => {
   try {
+    console.log("Reading data from db: ", req.body);
     const dataCollection = db.collection("data");
+    // console.log(req.user);
+    // console.log(req.user._id);
+    // console.log(req.user.id);
     const entries = await dataCollection
-      .find({ username: req.user.username })
+      .find({ username: req.user.id })
       .toArray();
-
+    // console.log("Data from db: ", entries);
     const decryptedEntries = entries.map((entry) => ({
       dataId: entry._id,
       dataUsername: Encrypter.decrypt(entry.dataUsername),
@@ -72,24 +77,38 @@ router.get("/", verifyToken, async (req, res) => {
 });
 
 // Delete a data entry
-router.delete("/", verifyToken, async (req, res) => {
+router.delete("/one", verifyToken, async (req, res) => {
   try {
     const { dataId } = req.body;
-    console.log('Recieved ID from click to deleted:', dataId);
+    console.log("delete one entry:", req.body);
+    console.log(req.user);
     if (!dataId) {
       return res.status(400).json({ message: "Missing dataId" });
     }
 
     const dataCollection = db.collection("data");
 
-    const entry = await dataCollection.findOne({ "_id": new ObjectId(dataId) });
-    console.log(entry);
-    if (!entry || entry.username !== req.user.username) {
-      return res.status(403).json({ message: "Unauthorized or entry not found" });
+    // Validate ObjectId format
+    let objectId;
+    try {
+      objectId = new ObjectId(dataId);
+    } catch (err) {
+      return res.status(400).json({ message: "Invalid dataId format" });
     }
 
-    // Perform deletion
-    await dataCollection.deleteOne({ _id: new ObjectId(dataId) });
+    // Find the entry in the database
+    const entry = await dataCollection.findOne({ _id: objectId });
+    if (!entry) {
+      return res.status(404).json({ message: "Entry not found" });
+    }
+
+    console.log("Entry from ui:", entry);
+    if (entry.username !== req.user.id) {
+      return res.status(403).json({ message: "Unauthorized to delete this entry" });
+    }
+
+    // Delete the entry
+    await dataCollection.deleteOne({ _id: objectId });
 
     return res.status(200).json({ message: "Entry deleted successfully" });
   } catch (err) {
@@ -97,13 +116,38 @@ router.delete("/", verifyToken, async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 });
+// router.delete("/", verifyToken, async (req, res) => {
+//   try {
+//     const { dataId } = req.body;
+//     console.log('Recieved ID from click to deleted:', dataId);
+//     if (!dataId) {
+//       return res.status(400).json({ message: "Missing dataId" });
+//     }
+
+//     const dataCollection = db.collection("data");
+
+//     const entry = await dataCollection.findOne({ "_id": new ObjectId(dataId) });
+//     console.log(entry);
+//     if (!entry || entry.username !== req.user.username) {
+//       return res.status(403).json({ message: "Unauthorized or entry not found" });
+//     }
+
+//     // Perform deletion
+//     await dataCollection.deleteOne({ _id: new ObjectId(dataId) });
+
+//     return res.status(200).json({ message: "Entry deleted successfully" });
+//   } catch (err) {
+//     console.error("Error deleting entry:", err);
+//     return res.status(500).json({ message: "Internal server error" });
+//   }
+// });
 
 router.delete("/all", verifyToken, async (req, res) => {
   try {
     const dataCollection = db.collection("data");
 
     // Delete all entries for the current user
-    const result = await dataCollection.deleteMany({ username: req.user.username });
+    const result = await dataCollection.deleteMany({ username: req.user.id });
 
     console.log(`Deleted ${result.deletedCount} entries for user ${req.user.username}`);
     return res.status(200).json({ message: `${result.deletedCount} entries deleted successfully` });
