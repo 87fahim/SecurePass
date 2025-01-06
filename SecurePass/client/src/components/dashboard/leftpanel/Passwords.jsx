@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Passwords.css";
+import AuthContext from "../../context/AuthProvider";
+
+
+
 
 const Notification = ({ message, type, onClose }) => {
   useEffect(() => {
@@ -21,12 +25,14 @@ const Notification = ({ message, type, onClose }) => {
 
 const Passwords = () => {
   const [entries, setEntries] = useState([]);
+  const { auth, setAuth } = useContext(AuthContext);
   const [newEntry, setNewEntry] = useState({
     dataUsername: "",
     dataPassword: "",
     dataWebsite: "",
     dataNotes: "",
   });
+  // console.log('entry:', newEntry);
   const [isLoading, setIsLoading] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
   const [activeEntryIndex, setActiveEntryIndex] = useState(null);
@@ -36,13 +42,14 @@ const Passwords = () => {
     setNotification({ message, type });
   };
 
-  const fetchEntries = async () => {
+  const fetchAllEntries = async () => {
     setIsLoading(true);
+    console.log("test:", auth.accessToken)
     try {
-      const response = await fetch("http://localhost:5050/api/data", {
+      const response = await fetch("http://localhost:5050/api/data/all", {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          Authorization: `Bearer ${auth.accessToken}`,// Use the token from context
         },
       });
       if (response.ok) {
@@ -60,16 +67,16 @@ const Passwords = () => {
   };
 
   useEffect(() => {
-    fetchEntries();
+    fetchAllEntries();
   }, []);
-
   const handleAddEntry = async () => {
     try {
+      console.log("====>", auth.accessToken)
       const response = await fetch("http://localhost:5050/api/data", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          Authorization: `Bearer ${auth.accessToken}`,
         },
         body: JSON.stringify(newEntry),
       });
@@ -81,7 +88,7 @@ const Passwords = () => {
           dataNotes: "",
         });
         setIsAdding(false); // Hide the Add Entry form
-        await fetchEntries();
+        await fetchAllEntries();
         showNotification("Entry added successfully!", "success");
       } else {
         const data = await response.json();
@@ -93,29 +100,34 @@ const Passwords = () => {
       showNotification("Failed to add entry.", "error");
     }
   };
-
   const handleDeleteEntry = async (dataId) => {
     try {
-      const response = await fetch(`http://localhost:5050/api/data`, {
+      const response = await fetch(`http://localhost:5050/api/data/one`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          Authorization: `Bearer ${auth.accessToken}`, // Token from context
         },
         body: JSON.stringify({ dataId }),
       });
-
+      const result = await response.json();
+      console.log(result);
       if (response.ok) {
-        await fetchEntries();
+        await fetchAllEntries(); // Refresh entries
         showNotification("Entry deleted successfully!", "success");
       } else {
-        showNotification("Failed to delete entry.", "error");
+        const errorData = await response.json();
+        showNotification(
+          errorData?.message || "Failed to delete entry.",
+          "error"
+        );
       }
     } catch (error) {
       console.error("Error deleting entry:", error);
-      showNotification("Error deleting entry.", "error");
+      showNotification("Error deleting entry. Please try again later.", "error");
     }
   };
+  
 
   const deleteAll = async () => {
     try {
@@ -123,12 +135,12 @@ const Passwords = () => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          Authorization: `Bearer ${auth.accessToken}`,
         },
       });
 
       if (response.ok) {
-        await fetchEntries();
+        await fetchAllEntries();
         showNotification("All items deleted successfully!", "success");
       } else {
         showNotification("Failed to delete all items.", "error");

@@ -12,7 +12,7 @@ export default class Encrypter {
         Encrypter.key,
         iv
       );
-      console.log("ENCRYPTING: ", clearText, this.key, iv)
+      // console.log("ENCRYPTING: ", clearText, this.key, iv)
       const encrypted = cipher.update(clearText, "utf8", "hex");
       return [
         

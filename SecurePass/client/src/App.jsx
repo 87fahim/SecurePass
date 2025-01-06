@@ -12,9 +12,8 @@ import Dashboard from './components/dashboard/Dashboard';
 
 function App() {
     return (
-
         <Router>
-            <div>
+            <main>
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -26,9 +25,8 @@ function App() {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/register" element={<Register />} />
                 </Routes>
-            </div>
+            </main>
         </Router>
-
     );
 }
 
