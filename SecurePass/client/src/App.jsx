@@ -25,26 +25,31 @@ function App() {
         <div className="background-overlay">
             <Navbar />
             <Routes>
-                <Route path="/" element={<Layout />} />
-                {/* {Public Routes  */}
-                <Route path="/home" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/register" element={<Register />} />
 
-                {/* Protected route */}
-                <Route element={<RequireAuth allowedRoles={[ROLES.Guest, ROLES.User]} />}>
-                    <Route path="/services" element={<Services />} />
-                </Route>
-                <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-                    <Route path="/contact" element={<Contact />} />
-                </Route>
-                <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.User]} />}>
-                    <Route path="/dashboard" element={<Dashboard />} /> F
-                </Route>
+                <Route path="/" element={<Layout />} >
 
-                {/* Missed Route */}
-                <Route path="*" element={<Missed />} F />
+                    {/* {Public Routes  */}
+
+                    <Route path="/" element={<Home />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/register" element={<Register />} />
+
+                    {/* Protected route */}
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Guest, ROLES.User]} />}>
+                        <Route path="/services" element={<Services />} />
+                    </Route>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
+                        <Route path="/contact" element={<Contact />} />
+                    </Route>
+                    <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.User]} />}>
+                        <Route path="/dashboard" element={<Dashboard />} /> F
+                    </Route>
+
+                    {/* Missed Route */}
+                    <Route path="*" element={<Missed />} F />
+                </Route>
             </Routes>
         </div>
 

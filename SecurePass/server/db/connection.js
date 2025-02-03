@@ -50,10 +50,10 @@ const connectDB = async () => {
     try {
       await client.connect();
       db = client.db("SecurePass");
-      console.log("Connected to MongoDB!");
+      console.log("✅ Connected to MongoDB successfully.");
     } catch (err) {
-      console.error("MongoDB Connection Error:", err);
-      process.exit(1); // Exit on failure
+      console.error("❌ MongoDB Connection Error:", err);
+      process.exit(1); // Exit the process if connection fails
     }
   }
   return db;
