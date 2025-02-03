@@ -216,12 +216,14 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('./assets/icons/Designer10.jpeg'); /* Path to your background image */
+    background-image: url('./assets/icons/Designer10.jpeg'); 
     background-size: 100%; /* Ensure the image covers the whole background */
     background-position: center; /* Center the image */
     background-repeat: repeat; /* Prevent repetition */
     background-attachment: fixed; /* Fixed background for a parallax effect */
     position: relative; /* Ensure it works with overlays */
+    z-index: -1000;
+    position: relative;
     
 }
 

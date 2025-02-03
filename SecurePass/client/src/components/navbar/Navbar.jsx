@@ -24,6 +24,7 @@ const Navbar = () => {
                 setAuth({}); // Clear the auth state
                 navigate("/"); // Redirect to home page
             } else {
+                console.log(response.status)
                 console.error("Logout failed due to:", response.statusText);
             }
         } catch (err) {

@@ -1,30 +1,4 @@
 
-
-
-
-// function App() {
-//     return (
-//         <BrowserRouter>
-//             <AuthProvider>
-//                 <main>
-//                     <Navbar />
-//                     <Routes>
-//                         <Route path="/*" element={<Home />} />
-//                         <Route path="/home" element={<Home />} />
-//                         <Route path="/dashboard" element={<Dashboard />} />
-//                         <Route path="/login" element={<Login />} />
-//                         <Route path="/about" element={<About />} />
-//                         <Route path="/services" element={<Services />} />
-//                         <Route path="/contact" element={<Contact />} />
-//                         <Route path="/register" element={<Register />} />
-//                     </Routes>
-//                 </main>
-//             </AuthProvider>
-//         </BrowserRouter>
-//     );
-// }
-
-// export default App;
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
@@ -38,10 +12,17 @@ import Dashboard from './components/dashboard/Dashboard';
 import Layout from './components/Layout'
 import Missed from './components/missedroutes/Missed'
 import RequireAuth from './components/RequireAuth';
+import './App.css'
+const ROLES = {
+    'User': 2000,
+    'Admin': 3000,
+    'Guest': 1000
+}
 
 function App() {
     return (
-        <>
+
+        <div className="background-overlay">
             <Navbar />
             <Routes>
                 <Route path="/" element={<Layout />} />
@@ -52,16 +33,21 @@ function App() {
                 <Route path="/register" element={<Register />} />
 
                 {/* Protected route */}
-                <Route element={<RequireAuth />}> 
+                <Route element={<RequireAuth allowedRoles={[ROLES.Guest, ROLES.User]} />}>
                     <Route path="/services" element={<Services />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
                     <Route path="/contact" element={<Contact />} />
+                </Route>
+                <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.User]} />}>
                     <Route path="/dashboard" element={<Dashboard />} /> F
                 </Route>
 
                 {/* Missed Route */}
-                <Route path="*" element={<Missed />} />
+                <Route path="*" element={<Missed />} F />
             </Routes>
-        </>
+        </div>
+
     );
 }
 
