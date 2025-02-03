@@ -69,6 +69,7 @@ const Passwords = () => {
   useEffect(() => {
     fetchAllEntries();
   }, []);
+  
   const handleAddEntry = async () => {
     try {
       console.log("====>", auth.accessToken)

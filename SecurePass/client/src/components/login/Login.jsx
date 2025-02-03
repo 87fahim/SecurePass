@@ -40,7 +40,8 @@ const Login = () => {
             if (response.ok) {
 
                 const accessToken = result.accessToken;
-                setAuth({ username, password, accessToken });
+                const roles = result.roles;
+                setAuth({ username, password, accessToken, roles });
                 setUserName('');
                 setPassword('');
                 console.log(from);

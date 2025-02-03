@@ -20,5 +20,16 @@ export const verifyToken = (req, res, next) => {
   }
 };
 
+export const verifyAdmin = async (req, res, next) => {
+  try {
+      const usersCollection = db.collection("users");
+      const user = await usersCollection.findOne({ _id: new ObjectId(req.user.id) });
 
-
+      if (!user || user.role !== "admin") {
+          return res.status(403).json({ message: "Admin access required" });
+      }
+      next();
+  } catch (error) {
+      res.status(500).json({ message: "Authorization error", error });
+  }
+};
