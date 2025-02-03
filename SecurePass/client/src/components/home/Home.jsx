@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <div className='home-wrapper'>
             <div className="home">
-                <PageTile title="SecurePass" style='style'/>
+                <PageTile title="🛡️SecurePass" style='style'/>
 
                 <div className="intro-section">
                     <p>Your trusted password manager for ultimate security and convenience.</p>

@@ -139,7 +139,7 @@
 import express from "express";
 import { verifyToken } from "../middleware/auth.js";
 import { insertData, findDataByUserId, deleteDataById, deleteAllDataByUserId } from "../models/dataModel.js";
-import Encrypter from "./Encrypter.js";
+import Encrypter from "../utils/Encrypter.js";
 
 const router = express.Router();
 
