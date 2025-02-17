@@ -45,6 +45,7 @@ const Navbar = () => {
                 <li><Link to="/about" className={isActive('/about')}>About</Link></li>
                 <li><Link to="/services" className={isActive('/services')}>Services</Link></li>
                 <li><Link to="/contact" className={isActive('/contact')}>Contact</Link></li>
+                <li><Link to="/expenses" className={isActive('expenses')}>Expenses</Link></li>
                 {auth?.accessToken ? (
                     <Link className="logout-button" onClick={handleLogout}>
                         Logout: {auth.username}

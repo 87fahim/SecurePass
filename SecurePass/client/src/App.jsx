@@ -5,6 +5,7 @@ import Navbar from './components/navbar/Navbar';
 import Login from './components/login/Login';
 import Home from './components/home/Home';
 import About from './components/about/About';
+import Expenses from './components/expenses/Expenses';
 import Services from './components/services/Services';
 import Contact from './components/contact/Contact';
 import Register from './components/register/Register';
@@ -12,6 +13,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Layout from './components/Layout'
 import Missed from './components/missedroutes/Missed'
 import RequireAuth from './components/RequireAuth';
+
 import './App.css'
 const ROLES = {
     'User': 2000,
@@ -35,6 +37,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/expenses" element={<Expenses/>}/>
 
                     {/* Protected route */}
                     <Route element={<RequireAuth allowedRoles={[ROLES.Guest, ROLES.User]} />}>
