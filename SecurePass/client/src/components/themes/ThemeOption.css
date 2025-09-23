@@ -1,28 +1,18 @@
-.theme-option{
-    height: 25px;
-    width: 25px;
-    border: 1px solid;
-    border-radius: 50%;
-    cursor: pointer;
-}
-#theme-light{
-    background-color: white;
-    border-color: black;
-}
-#theme-dark{
-    background-color: black;
-    border-color: white;
-}
-#theme-purple{
-    background-color: rgb(104, 2, 90);
-    border-color: rgb(255, 224, 246);
-}
-#theme-green{
-    background-color: #026846;
-    border-color: rgb(255, 224, 246);
+.theme-option {
+  height: 25px;
+  width: 25px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-#theme-blue{
-    background-color: rgb(2, 75, 104);
-    border-color: rgb(255, 224, 246);
+/* Swatches pull from theme tokens */
+#theme-light {
+  background-color: var(--bg-light);
+  border-color: var(--text);
+}
+
+#theme-dark {
+  background-color: var(--bg-dark);
+  border-color: var(--text);
 }

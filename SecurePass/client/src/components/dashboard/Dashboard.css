@@ -2,17 +2,15 @@
   display: flex;
   height: 100vh;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: var(--bg-light); /* instead of #f4f4f4 */
+  color: var(--text);
 }
-
 
 .dashboard-content {
   flex: 1;
   padding: 20px;
-  background-color: var(--primary-bg-color);
+  background-color: var(--bg);
   overflow-y: auto;
-  border-left: 1px solid orange;
-  opacity: 0.9;
+  border-left: 1px solid var(--accent); /* instead of orange */
+  opacity: 0.95;
 }
-
-

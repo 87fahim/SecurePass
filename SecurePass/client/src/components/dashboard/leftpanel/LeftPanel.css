@@ -1,31 +1,33 @@
 .left-panel {
   width: 250px;
-  background-color: var(--secondary-bg-color);
-  color: var(--primary-font-color);
+  background-color: var(--bg-light);
+  color: var(--text);
   display: flex;
   flex-direction: column;
   padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 0 5px var(--shadow);
+  border-right: 1px solid var(--border);
 }
 
 .left-panel .tab-button {
   background-color: transparent;
-  color: var(--primary-font-color);
+  color: var(--text);
   border: none;
-  padding: 5px;
-
+  padding: 6px 8px;
   text-align: left;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
   border-radius: 4px;
 }
 
 .left-panel .tab-button:hover {
-  background-color: var(--primary-highlight-color);
+  background-color: color-mix(in hsl, var(--accent) 20%, var(--bg-light) 80%);
+  color: var(--text);
 }
 
 .left-panel .tab-button:focus {
   outline: none;
-  background-color: var(--focus-color)
+  background-color: var(--accent);
+  color: var(--bg);
 }

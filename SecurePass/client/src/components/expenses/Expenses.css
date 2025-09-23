@@ -2,30 +2,34 @@
   display: flex;
   min-height: 100vh;
   width: 100%;
-  background-color: var(--primary-bg-color);
-  color: var(--primary-font-color);
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 .sidebar {
   width: 25%;
-  background-color: var(--secondary-bg-color);
+  background-color: var(--bg-light);
   padding: 1rem;
-  text-align:left;
+  text-align: left;
+  border-right: 1px solid var(--border);
 }
 
 .title {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
+  color: var(--text);
 }
 
 .menu-item {
   padding: 0.5rem;
   cursor: pointer;
+  border-radius: 6px;
 }
 
 .menu-item.active {
-  background-color: var(--focus-color);
+  background-color: color-mix(in hsl, var(--accent) 20%, var(--bg) 80%);
+  color: var(--text);
 }
 
 .content {
@@ -36,58 +40,63 @@
 .section-title {
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: var(--text);
 }
 
 .container .content .input-form {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  align-items: center ;
-  justify-content: space-between ;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   flex-direction: row;
 }
 
 .input {
   flex: 1;
-  min-width: 100px;
+  min-width: 10%;
+  height: inherit;
 }
 
 .button {
   flex-shrink: 0;
+  min-width: 10px;
+  width: 10%;
+  height: inherit;
+  padding: 10px;
 }
 
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid var(--primary-border-color);
-}
-
-
+/* Tables */
 .table-container {
-  max-height: 500px; /* Adjust based on preference */
+  max-height: 500px;
   overflow-y: auto;
-  border: 1px solid var(--primary-border-color);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px var(--shadow);
+  background: var(--bg);
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid var(--primary-border-color);
+  border: 1px solid var(--border);
 }
 
-.table th, .table td {
-  padding: 0px 5px 0px 5px;
+.table th,
+.table td {
+  padding: 0 5px;
   text-align: left;
-  border: 1px solid var(--primary-border-color);
-  cursor: pointer; /* Makes headers clickable for sorting */
+  border: 1px solid var(--border);
+  cursor: pointer; /* sortable headers */
   text-wrap: nowrap;
+  color: var(--text);
+  background: var(--bg);
 }
 
 .table th {
-  background-color: var(--primary-highlight-color);
-  color: var(--primary-bg-color);
+  background-color: var(--accent);
+  color: var(--bg);             /* accent contrast */
   position: sticky;
   top: 0;
   z-index: 1;
@@ -95,30 +104,58 @@
   text-wrap: nowrap;
 }
 
+/* Option buttons row */
 .option-buttons {
   display: flex;
   align-items: center;
-  gap: 8px; /* Adjust spacing between elements */
+  gap: 8px;
 }
 
-.option-buttons > * { /* Applies styles to all direct children */
-  flex: 1; /* Ensures equal width */
-  height: 40px; /* Set a fixed height */
-  min-width: 120px; /* Ensure a minimum width */
+.option-buttons > * {
+  flex: 1;
+  height: 40px;
+  min-width: 120px;
   text-align: center;
   font-size: 14px;
   padding: 8px;
   border-radius: 4px;
 }
 
+/* Danger action button (theme-aware) */
 .expenses-options-button {
-  background-color: #ff4d4d;
-  color: white;
+  background-color: var(--error);
+  color: var(--bg);
   border: none;
   cursor: pointer;
+  transition: filter .2s ease-in-out;
+  margin-left: 50%;
 }
 
 .expenses-options-button:hover {
-  background-color: #cc0000;
+  filter: brightness(0.92);
 }
 
+/* Responsive: stack sidebar on small screens */
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    min-width: 550px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+.sidebar {
+  flex: 0 0 260px;   /* fixed base width */
+  min-width: 220px;  /* prevent it from collapsing */
+  max-width: 320px;  /* optional, cap it */
+  background-color: var(--bg-light);
+  padding: 1rem;
+  text-align: left;
+  border-right: 1px solid var(--border);
+}
+
+.table tr:nth-child(even) td { background: color-mix(in hsl, var(--bg-light) 60%, var(--bg) 40%); }
