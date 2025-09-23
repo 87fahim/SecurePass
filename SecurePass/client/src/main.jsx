@@ -5,7 +5,7 @@ import './main.css';
 import App from './App.jsx';
 import { AuthProvider } from './components/context/AuthProvider';
 
-const theme = ['light', 'dark', 'purple', 'green'];
+const theme = ['light', 'dark'];
 document.querySelector('body').setAttribute('data-theme', theme[Math.floor(Math.random() * theme.length)]);
 
 createRoot(document.getElementById('root')).render(

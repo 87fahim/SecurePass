@@ -1,80 +1,99 @@
-/* Navbar styling with Ubuntu-inspired theme */
+/* Navbar styling with theme tokens */
 .navbar {
-    display: flex;
-    position: sticky;
-    top:0;
-    z-index: 1000;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--primary-font-color);
-    color: var(--primary-bg-color);
-    padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  justify-content: space-between;
+  align-items: center;
+  background-color: color-mix(in hsl, var(--bg) 92%, transparent);
+  backdrop-filter: saturate(140%) blur(6px);
+  color: var(--text);
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px var(--shadow);
 }
+
 .app-icon {
-    width: 40px;
-    height: 40px;
-    margin-right: 8px;
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
 }
+
 .navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 1px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
-.navbar-brand-link{
-    display: flex;
+
+.navbar-brand-link {
+  display: flex;
+  align-items: center;
+  color: var(--text);
+  text-decoration: none;
 }
+
 .navbar-links {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-links li {
-    margin: 0 15px;
+  margin: 0 15px;
 }
 
 .navbar-links a {
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--text);
+  transition: color 0.3s ease-in-out, border-color 0.2s ease-in-out;
 }
 
-.navbar-links a:hover {
-    color: var(--secondary-highlight-color);
+.navbar-links a:hover,
+.navbar-links a:focus-visible {
+  color: var(--accent);
+  outline: none;
+}
+
+.navbar-links a.active {
+  border: none;
+  border-bottom: 2px solid var(--accent);
 }
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 600px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .navbar-links {
-        flex-direction: column;
-        width: 100%;
-    }
+  .navbar-links {
+    flex-direction: column;
+    width: 100%;
+  }
 
-    .navbar-links li {
-        margin: 10px 0;
-    }
+  .navbar-links li {
+    margin: 10px 0;
+  }
 }
+
 .theme-selector {
-    margin-left: 20px;
+  margin-left: 20px;
 }
+
 .theme-selector select {
-    margin-left: 5px;
-    padding: 5px;
-    font-size: 14px;
+  margin-left: 5px;
+  padding: 5px;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
 }
-.theme-options{
-    display: flex;
-    gap: 10px;
-}
-.navbar-links a.active {
-    border: none;
-    border-bottom: 2px solid var(--secondary-border-color); 
+
+.theme-options {
+  display: flex;
+  gap: 10px;
 }

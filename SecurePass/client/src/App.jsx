@@ -13,6 +13,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Layout from './components/Layout'
 import Missed from './components/missedroutes/Missed'
 import RequireAuth from './components/RequireAuth';
+import LinkManager from './components/linkmanagement/LinkManager';
 
 import './App.css'
 const ROLES = {
@@ -38,6 +39,7 @@ function App() {
                     <Route path="/about" element={<About />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/expenses" element={<Expenses/>}/>
+                    <Route path="/links" element={<LinkManager idPrefix="lm1" />} />
 
                     {/* Protected route */}
                     <Route element={<RequireAuth allowedRoles={[ROLES.Guest, ROLES.User]} />}>

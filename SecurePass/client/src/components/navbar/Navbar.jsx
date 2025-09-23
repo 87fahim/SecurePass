@@ -2,6 +2,7 @@
 import './Navbar.css';
 import AuthContext from '../context/AuthProvider';
 import ThemeOption from '../themes/ThemeOption';
+import LinkManager from '../linkmanagement/LinkManager';
 import appIcon from '../../assets/icons/app-icon.png';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { React, useContext } from 'react';
@@ -42,6 +43,8 @@ const Navbar = () => {
             </div>
             <ul className="navbar-links">
                 <li><Link to="/" className={isActive('/')}>Home</Link></li>
+                <li><Link to="/links" className={isActive('/links')}>Links</Link></li>
+
                 <li><Link to="/about" className={isActive('/about')}>About</Link></li>
                 <li><Link to="/services" className={isActive('/services')}>Services</Link></li>
                 <li><Link to="/contact" className={isActive('/contact')}>Contact</Link></li>
@@ -57,9 +60,7 @@ const Navbar = () => {
             <div className="theme-options">
                 <ThemeOption theme="light" />
                 <ThemeOption theme="dark" />
-                <ThemeOption theme="purple" />
-                <ThemeOption theme="green" />
-                <ThemeOption theme="blue" />
+
             </div>
         </nav>
     );
