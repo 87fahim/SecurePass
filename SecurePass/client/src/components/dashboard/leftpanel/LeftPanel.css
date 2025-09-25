@@ -1,6 +1,6 @@
 .left-panel {
   width: 250px;
-  background-color: var(--bg-light);
+  background-color: var(--bg);
   color: var(--text);
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@
 }
 
 .left-panel .tab-button {
-  background-color: transparent;
+  background-color: var(--bg-light);
   color: var(--text);
   border: none;
   padding: 6px 8px;
@@ -22,12 +22,12 @@
 }
 
 .left-panel .tab-button:hover {
-  background-color: color-mix(in hsl, var(--accent) 20%, var(--bg-light) 80%);
-  color: var(--text);
+  background-color: var(--btn-bg);
+  color: var(--bg-light);
 }
 
 .left-panel .tab-button:focus {
   outline: none;
-  background-color: var(--accent);
+  background-color: var(--btn-bg);
   color: var(--bg);
 }

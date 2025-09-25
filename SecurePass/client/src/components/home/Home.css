@@ -13,7 +13,7 @@
 .home {
   text-align: center;
   padding: 20px;
-  background-color: var(--bg-light);
+  background-color: var(--bg);
   width: 50%;
   box-shadow: 0px 1px 8px var(--shadow);
   border-radius: 10px;
