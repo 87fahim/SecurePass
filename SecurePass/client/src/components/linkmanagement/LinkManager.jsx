@@ -1,6 +1,6 @@
 // linkmanager.jsx
 import React, { useEffect, useRef } from "react";
-import "./styles.css";
+import "./LinkManager.css";
 import { uid, escapeHtml, escapeAttr, db } from "./utils.js"; // removed getSwatchesForTheme
 import { ui } from "./popup.js";
 

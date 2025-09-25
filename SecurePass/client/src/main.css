@@ -8,7 +8,7 @@
   /* Background */
   --bg-dark: hsl(0 0% 85%);
   --bg: hsl(0 0% 90%);
-  --bg-light: hsl(0 0% 95%);
+  --bg-light: hsl(0 0% 100%);
 
   /* Text */
   --text: hsl(0 0% 5%);
@@ -37,16 +37,16 @@
 /* Dark Theme */
 [data-theme="dark"] {
   /* Background */
-  --bg-dark: hsl(0 0% 0%);
-  --bg: hsl(0 0% 5%);
-  --bg-light: hsl(0 0% 10%);
+  --bg-dark: hsl(0 0% 20%);
+  --bg: hsl(0 0% 15%);
+  --bg-light: hsl(0 0% 5%);
 
   /* Text */
   --text: hsl(0 0% 95%);
   --text-muted: hsl(0 0% 70%);
 
   /* Accent */
-  --accent: hsl(25 100% 55%); /* brighter orange for contrast */
+  --accent: hsl(61, 74%, 63%); /* brighter orange for contrast */
 
   /* Buttons */
   --btn-bg: hsl(0 0% 95%);

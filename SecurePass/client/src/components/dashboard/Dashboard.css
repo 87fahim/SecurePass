@@ -9,7 +9,7 @@
 .dashboard-content {
   flex: 1;
   padding: 20px;
-  background-color: var(--bg);
+  background-color: var(--bg-dark);
   overflow-y: auto;
   border-left: 1px solid var(--accent); /* instead of orange */
   opacity: 0.95;

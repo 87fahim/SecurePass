@@ -14,7 +14,7 @@ button {
   --primary: var(--accent);
   --danger: var(--error);
   --card: var(--bg-light);
-  --card-highlight: color-mix(in hsl, var(--bg-light) 85%, var(--accent) 15%);
+  --card-highlight: color-mix(in hsl, var(--bg) 80%, var(--accent) 20%);
   --border: var(--border);
   --radius: 12px;
   --shadow: var(--shadow);
@@ -116,7 +116,7 @@ button {
   justify-content: space-between;  /* 👈 push actions to bottom */
   cursor: pointer;
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, background-color .15s ease;
-  box-shadow: 0 2px 6px color-mix(in hsl, var(--shadow) 90%, transparent);
+  box-shadow: 2px 2px 5px 2px color-mix(in hsl, white 10%, transparent);
   flex: 1 1 220px;
   max-width: 360px;
 }
@@ -132,7 +132,7 @@ button {
 }
 
 .lm .card:hover {
-  box-shadow: 0 4px 16px color-mix(in hsl, var(--border) 55%, transparent);
+  box-shadow: 0 4px 16px color-mix(in hsl, var(--border) 90%, transparent);
   border-color: var(--hover-border);
   background: var(--card-highlight);
 }
@@ -165,18 +165,18 @@ button {
   font-size:11px;
   border-radius:6px;
   cursor:pointer;
-  border: 1px solid var(--accent);
+  width: auto;                 /* was 20%; let buttons size naturally */
+  background-color: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--text-muted);
+  margin-top: 20px;
+  /* border: 1px solid var(--accent); */
 }
 
 .lm .card .mini.delete:hover { background: var(--danger-hover);  color: var(--text); }
 .lm .card .mini.edit:hover   { background: var(--accent);        color: var(--text); }
 
-/* if you want card buttons to size to content instead of fixed widths */
-.lm .card button{
-  width: auto;                 /* was 20%; let buttons size naturally */
-  background-color: transparent;
-  color: var(--text-muted);
-}
+
 
 /* Dialogs */
 .lm dialog {
