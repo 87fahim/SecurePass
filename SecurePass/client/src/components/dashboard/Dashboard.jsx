@@ -6,6 +6,7 @@ import Settings from "./settings/Settings";
 import Help from "./help/Help";
 import "./Dashboard.css";
 import Expenses from "../expenses/Expenses";
+import LinkManger from "./linkmanagement/LinkManager"
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("My Profile");
@@ -22,6 +23,8 @@ const Dashboard = () => {
         return <Help />;
       case "Expenses":
         return <Expenses/>
+      case "My Links":
+        return <LinkManger/>
       default:
         return null;
     }

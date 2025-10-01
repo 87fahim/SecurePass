@@ -3,7 +3,7 @@ import "./LeftPanel.css";
 
 
 const LeftPanel = ({ onTabSelect }) => {
-  const tabs = ["My Profile", "Passwords", "Expenses", "Settings", "Help"];
+  const tabs = ["My Profile", "Passwords", "My Links", "Expenses", "Settings", "Help"];
 
   return (
     <div className="left-panel">
