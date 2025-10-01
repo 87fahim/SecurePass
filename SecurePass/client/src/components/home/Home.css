@@ -60,6 +60,7 @@
   font-size: 1rem;
   line-height: 1.8;
   color: var(--text-muted);
+  display: block;
 }
 
 .features-section li {
