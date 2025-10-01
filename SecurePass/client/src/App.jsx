@@ -12,7 +12,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Layout from './components/Layout';
 import Missed from './components/missedroutes/Missed';
 import RequireAuth from './components/RequireAuth';
-import LinkManager from './components/linkmanagement/LinkManager';
+import LinkManager from './components/dashboard/linkmanagement/LinkManager';
 import Logout from "./components/logout/Logout";
 import './App.css';
 
