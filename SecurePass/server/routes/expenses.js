@@ -1,42 +1,55 @@
+// routes/expenses.js
 import express from "express";
 import { verifyToken } from "../middleware/auth.js";
-import { insertData, findDataByUserId, deleteDataById, deleteAllDataByUserId } from "../models/ExpensesModel.js";
-import Encrypter from "../utils/Encrypter.js";
+import {
+  insertData,
+  findDataByUserId,
+  deleteDataById,
+  deleteAllDataByUserId,
+} from "../models/expensesModel.js"; // 👈 match actual file casing
 
 const router = express.Router();
 
+/**
+ * Create one expense
+ */
 router.post("/", verifyToken, async (req, res) => {
   try {
-
     const { date, type, category, subCategory, occurrence, amount, card, description } = req.body;
-    console.log("added new entry to the expenses", req.body)
-    const encryptedData = {
-      username: req.user.id,
-      date: date,
-      type: type,
-      category: category,
-      subCategory: subCategory,
-      occurrence: occurrence,
-      amount: amount,
-      card: card,
-      description: description,
+
+    const doc = {
+      username: req.user.id, // owner (from verifyToken)
+      date,
+      type,
+      category,
+      subCategory,
+      occurrence,
+      amount,
+      card,
+      description,
       createdAt: new Date(),
     };
 
-    const result = await insertData(encryptedData);
-    return res.status(201).json({ message: "Data added successfully", insertedId: result.insertedId });
+    const result = await insertData(doc);
+    return res
+      .status(201)
+      .json({ message: "Expense added successfully", insertedId: result.insertedId });
   } catch (err) {
-    console.error("Error adding data:", err);
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Error adding expense:", err);
+    return res.status(500).json({ message: "Internal server error" });
   }
 });
 
+/**
+ * Get all expenses for current user
+ */
 router.get("/all", verifyToken, async (req, res) => {
-  console.log("Request for all expenses data received")
   try {
     const entries = await findDataByUserId(req.user.id);
-    const allEntries = entries.map(entry => ({
-      username: req.user.id,
+
+    const allEntries = entries.map((entry) => ({
+      expenseId: entry._id?.toString?.() || entry._id,
+      username: entry.username,
       date: entry.date,
       type: entry.type,
       category: entry.category,
@@ -45,73 +58,95 @@ router.get("/all", verifyToken, async (req, res) => {
       amount: entry.amount,
       card: entry.card,
       description: entry.description,
+      createdAt: entry.createdAt,
     }));
-    console.log('sendingd all expenses data', allEntries);
+
     return res.status(200).json(allEntries);
   } catch (err) {
-    console.error("Error fetching data:", err);
+    console.error("Error fetching expenses:", err);
     return res.status(500).json({ message: "Internal server error" });
   }
 });
 
+/**
+ * Delete one expense by id
+ */
 router.delete("/one", verifyToken, async (req, res) => {
   try {
     const { dataId } = req.body;
     if (!dataId) return res.status(400).json({ message: "Missing dataId" });
 
     const result = await deleteDataById(dataId);
-    if (result.deletedCount === 0) return res.status(404).json({ message: "Entry not found" });
+    if (!result?.deletedCount) {
+      return res.status(404).json({ message: "Entry not found" });
+    }
 
     return res.status(200).json({ message: "Entry deleted successfully" });
   } catch (err) {
-    console.error("Error deleting entry:", err);
-    res.status(500).json({ message: "Internal server error" });
-  }
-});
-
-router.delete("/all", verifyToken, async (req, res) => {
-  try {
-    console.log("request to delete all expenses received.");
-    const result = await deleteAllDataByUserId(req.user.id);
-    console.log("Result of Delete", result);
-    if (result.deletedCount === 0) {
-      let temp = res.status(403).json({ message: "No entries found to delete" });
-      console.log('Sending', temp.body)
-      return temp;
-    }
-
-    return res.status(200).json({ message: `${result.deletedCount} entries deleted successfully` });
-  } catch (err) {
-    console.error("Error deleting all entries:", err);
+    console.error("Error deleting expense:", err);
     return res.status(500).json({ message: "Internal server error" });
   }
 });
 
+/**
+ * Delete all expenses for current user
+ */
+router.delete("/all", verifyToken, async (req, res) => {
+  try {
+    const result = await deleteAllDataByUserId(req.user.id);
+
+    if (!result?.deletedCount) {
+      // Not an authorization error; just nothing to delete
+      return res.status(404).json({ message: "No entries found to delete" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: `${result.deletedCount} entries deleted successfully` });
+  } catch (err) {
+    console.error("Error deleting all expenses:", err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+/**
+ * Bulk create expenses (CSV import)
+ */
 router.post("/bulk", verifyToken, async (req, res) => {
   try {
     const { expenses } = req.body;
-    if (!expenses || !Array.isArray(expenses) || expenses.length === 0) {
+    if (!Array.isArray(expenses) || expenses.length === 0) {
       return res.status(400).json({ message: "Invalid CSV data" });
     }
 
-    const encryptedData = expenses.map(expense => ({
+    const docs = expenses.map((e) => ({
       username: req.user.id,
-      date: expense.date,
-      type: expense.type,
-      category: expense.category,
-      subCategory: expense.subCategory,
-      occurrence: expense.occurrence,
-      amount: expense.amount,
-      card: expense.card,
-      description: expense.description,
+      date: e.date,
+      type: e.type,
+      category: e.category,
+      subCategory: e.subCategory,
+      occurrence: e.occurrence,
+      amount: e.amount,
+      card: e.card,
+      description: e.description,
       createdAt: new Date(),
     }));
 
-    const result = await insertData(encryptedData); // Ensure `insertData` supports bulk insert
-    return res.status(201).json({ message: "Expenses added successfully", insertedCount: result.insertedCount });
+    // Ensure your model's insertData can handle arrays (bulk insert)
+    const result = await insertData(docs);
+
+    // Try to compute inserted count defensively
+    const insertedCount =
+      result?.insertedCount ??
+      (result?.insertedIds ? Object.keys(result.insertedIds).length : undefined) ??
+      (Array.isArray(docs) ? docs.length : 1);
+
+    return res
+      .status(201)
+      .json({ message: "Expenses added successfully", insertedCount });
   } catch (err) {
     console.error("Error adding expenses:", err);
-    res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 });
 

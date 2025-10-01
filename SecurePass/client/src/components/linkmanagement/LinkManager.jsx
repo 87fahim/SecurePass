@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import "./LinkManager.css";
 import { uid, escapeHtml, escapeAttr, db } from "./utils.js"; // removed getSwatchesForTheme
 import { ui } from "./popup.js";
+import { useNotification } from "../notifications/NotificationProvider.jsx";
 
 /**
  * LinkManager React Component
@@ -12,6 +13,7 @@ import { ui } from "./popup.js";
 const LinkManager = ({ idPrefix = "lm" }) => {
   const rootRef = useRef(null);
   const id = (suffix) => `${idPrefix}-${suffix}`;
+  const { notify, confirm } = useNotification();
 
   useEffect(() => {
     const root = rootRef.current;

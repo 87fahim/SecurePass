@@ -13,4 +13,9 @@
   overflow-y: auto;
   border-left: 1px solid var(--accent); /* instead of orange */
   opacity: 0.95;
+  overflow: none;
+  scrollbar-width: none;
+  height: calc(100vh-500);
 }
+
+.dashboard-content::-webkit-scrollbar{ display:none; } 

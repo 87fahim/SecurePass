@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import LeftPanel from "./leftpanel/LeftPanel";
-import MyProfile from "./leftpanel/MyProfile";
-import Passwords from "./leftpanel/Passwords";
-import Settings from "./leftpanel/Settings";
-import Help from "./leftpanel/Help";
+import MyProfile from "./profile/MyProfile";
+import Passwords from "./passwords/Passwords";
+import Settings from "./settings/Settings";
+import Help from "./help/Help";
 import "./Dashboard.css";
+import Expenses from "../expenses/Expenses";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("My Profile");
@@ -19,6 +20,8 @@ const Dashboard = () => {
         return <Settings />;
       case "Help":
         return <Help />;
+      case "Expenses":
+        return <Expenses/>
       default:
         return null;
     }

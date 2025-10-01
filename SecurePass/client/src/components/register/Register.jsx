@@ -31,14 +31,14 @@ const CreateAccount = () => {
     // requires 8+ chars, 1 uppercase, 1 number; special chars optional
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
 
-    if (!formData.username.trim()) newErrors.username = 'Username is required.';
-    if (!emailRegex.test(formData.email)) newErrors.email = 'Please enter a valid email address.';
-    if (!passwordRegex.test(formData.password)) {
-      newErrors.password =
-        'Password must be at least 8 characters long, contain one uppercase letter and one number.';
-    }
-    if (formData.password !== formData.confirmPassword)
-      newErrors.confirmPassword = 'Passwords do not match.';
+    // if (!formData.username.trim()) newErrors.username = 'Username is required.';
+    // if (!emailRegex.test(formData.email)) newErrors.email = 'Please enter a valid email address.';
+    // if (!passwordRegex.test(formData.password)) {
+    //   newErrors.password =
+    //     'Password must be at least 8 characters long, contain one uppercase letter and one number.';
+    // }
+    // if (formData.password !== formData.confirmPassword)
+    //   newErrors.confirmPassword = 'Passwords do not match.';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;

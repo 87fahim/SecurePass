@@ -37,9 +37,9 @@
 /* Dark Theme */
 [data-theme="dark"] {
   /* Background */
-  --bg-dark: hsl(0 0% 20%);
+  --bg-dark: hsl(0 0% 10%);
   --bg: hsl(0 0% 15%);
-  --bg-light: hsl(0 0% 5%);
+  --bg-light: hsl(0 0% 20%);
 
   /* Text */
   --text: hsl(0 0% 95%);
