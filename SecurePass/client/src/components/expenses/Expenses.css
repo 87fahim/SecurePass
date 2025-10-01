@@ -1,17 +1,55 @@
 .container {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  background-color: var(--bg);
+  background-color: transparent;
   color: var(--text);
+
 }
 
-.sidebar {
-  width: 25%;
-  background-color: var(--bg-light);
-  padding: 1rem;
-  text-align: left;
-  border-right: 1px solid var(--border);
+.expsenses-navbar {
+  margin-top: 10px;
+  top: 0;
+  z-index: 10;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: transparent;
+  
+}
+.expsenses-navbar ul li{
+  display: inline;
+  width: 100px;
+}
+
+.option-buttons {
+  position: sticky;
+  top: 0;                          /* stick to top inside .table-container */
+  z-index: 5;                      /* above thead */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  height: 40px;
+  min-width: 120px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 0;                /* avoid weird rounding while stuck */
+  background: var(--bg);           /* solid background so content doesn’t show through */
+  background-color: transparent;
+}
+
+/* Danger action button (theme-aware) */
+.option-button {
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  transition: filter .2s ease-in-out;
+  width: 150px;
+  padding: 0;
+  margin: 0;
 }
 
 .title {
@@ -25,17 +63,22 @@
   padding: 0.5rem;
   cursor: pointer;
   border-radius: 6px;
+  background-color: var(--bg-light);
+}
+
+ul{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding: 5px;
 }
 
 .menu-item.active {
-  background-color: color-mix(in hsl, var(--accent) 20%, var(--bg) 80%);
+  border: 1px solid var(--accent);
   color: var(--text);
 }
 
-.content {
-  width: 100%;
-  padding: 1.5rem;
-}
+
 
 .section-title {
   font-size: 2rem;
@@ -59,28 +102,32 @@
   height: inherit;
 }
 
-.button {
-  flex-shrink: 0;
-  min-width: 10px;
-  width: 10%;
-  height: inherit;
-  padding: 10px;
-}
 
-/* Tables */
 .table-container {
-  max-height: 500px;
-  overflow-y: auto;
+  position: relative;              /* establishes containing block for sticky */
+  max-height: 100vh;                /* pick any height that makes it scroll */
+  overflow: auto;                  /* sticky works within this scroller */
   border: 1px solid var(--border);
   border-radius: 6px;
   box-shadow: 0 2px 8px var(--shadow);
-  background: var(--bg);
+  background: var(--bg); 
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid var(--border);
+}
+
+.table thead th {
+  position: sticky;
+  top: var(--toolbar-h, 0px);  /* use 0 if no toolbar above INSIDE the scroller */
+  z-index: 10;
+  background: var(--accent);
+  color: var(--bg);
+  text-align: center;
+  white-space: nowrap;         /* replace text-wrap */
+  box-shadow: 0 1px 0 var(--border);
 }
 
 .table th,
@@ -103,32 +150,17 @@
   text-align: center;
   text-wrap: nowrap;
 }
-
-/* Option buttons row */
-.option-buttons {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.tab-name{
+  background-color: var(--bg);
+  border-radius: 10px;
+  border: 1px solid var(--bg-light);
 }
 
-.option-buttons > * {
-  flex: 1;
-  height: 40px;
-  min-width: 120px;
-  text-align: center;
-  font-size: 14px;
-  padding: 8px;
-  border-radius: 4px;
-}
 
 /* Danger action button (theme-aware) */
-.expenses-options-button {
+.option-button.delete:hover {
   background-color: var(--error);
-  color: var(--bg);
-  border: none;
-  cursor: pointer;
-  transition: filter .2s ease-in-out;
-  margin-left: 50%;
+  color: var(--text);
 }
 
 .expenses-options-button:hover {

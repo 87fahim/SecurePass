@@ -2,8 +2,12 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Home.css';
 import PageTile from '../pagetitle/PageTitle'
+import useAuth from "../../hooks/userAuth";
+
 const Home = () => {
     const location = useLocation();
+    const { isAuthenticated } = useAuth(); // ⬅️ from AuthProvider via hook
+    console.log('isAuthenticated value is: ', isAuthenticated)
 
     return (
         <div className='home-wrapper'>
@@ -26,19 +30,18 @@ const Home = () => {
                 </section>
 
                 <section className="cta-section">
+                   {!isAuthenticated ? (
+                    <>
+                     <Link to="/login" className="cta-button secondary">Login</Link>
+                     <Link to="/register" className='cta-button register'>Register</Link>
+                    </>
                    
-                    <Link to="/login" className="cta-button secondary">Login</Link>
-                    <Link to="/register" className='cta-button register'>Register</Link>
+                    ) : (
+                     <Link to="/logout" className="cta-button secondary">Logout</Link>
+                    )}
                 </section>
-
-                <section className="demo-section">
-                    <h2>How it Works</h2>
-                    <p>Explore our intuitive interface and features in a quick demo!</p>
-                    <Link to="/demo" className="demo-button">View Demo</Link>
-                </section>
-
                 <footer className="home-footer">
-                    <p>&copy; 2024 SecurePass. All rights reserved.</p>
+                    <p>&copy; 2025 SecurePass. All rights reserved.</p>
                 </footer>
             </div>
         </div>

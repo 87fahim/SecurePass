@@ -1,20 +1,17 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Expenses.css";
 import ImportCSV from "./ImportCSV";
-import AuthContext from "../context/AuthProvider";
 import DynamicForm from "../dynamics/DynamicForm";
-
+import useAuth from "../../hooks/userAuth"; // ← use the hook
 
 const Notification = ({ message, type, onClose }) => {
   useEffect(() => {
     if (message) {
-      const timer = setTimeout(onClose, 3000);
-      return () => clearTimeout(timer);
+      const t = setTimeout(onClose, 3000);
+      return () => clearTimeout(t);
     }
   }, [message, onClose]);
-
   if (!message) return null;
-
   return (
     <div className={`notification ${type}`}>
       <span>{message}</span>
@@ -24,7 +21,7 @@ const Notification = ({ message, type, onClose }) => {
 };
 
 const Expenses = () => {
-  const { auth } = useContext(AuthContext);
+  const { isAuthenticated } = useAuth(); // ← read from context via hook
 
   const [activePage, setActivePage] = useState("Enter Data");
   const [notification, setNotification] = useState({ message: "", type: "" });
@@ -32,7 +29,6 @@ const Expenses = () => {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   const [isLoading, setIsLoading] = useState(true);
 
-  // Modal ref for the Add form
   const addDialogRef = useRef(null);
 
   const showNotification = (message, type) =>
@@ -43,14 +39,11 @@ const Expenses = () => {
     try {
       const response = await fetch("http://localhost:5050/api/expenses/all", {
         method: "GET",
-        headers: { Authorization: `Bearer ${auth.accessToken}` },
+        credentials: "include",                 // ✅ send HttpOnly cookie
       });
-      if (response.ok) {
-        const data = await response.json();
-        setDataList(data);
-      } else {
-        throw new Error(`Error: ${response.statusText}`);
-      }
+      if (!response.ok) throw new Error(response.statusText);
+      const data = await response.json();
+      setDataList(data);
     } catch (error) {
       showNotification("Failed to load entries.", "error");
     } finally {
@@ -91,22 +84,16 @@ const Expenses = () => {
     try {
       const response = await fetch("http://localhost:5050/api/expenses", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${auth.accessToken}`,
-        },
+        credentials: "include",                 // ✅ cookie-based auth
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(valuesObject),
       });
-
-      if (response.ok) {
-        await fetchAllEntries();
-        showNotification("Expense added successfully!", "success");
-        closeAddDialog();
-      } else {
-        showNotification("Failed to add expense.", "error");
-      }
-    } catch (error) {
-      showNotification("Error adding expense.", "error");
+      if (!response.ok) throw new Error();
+      await fetchAllEntries();
+      showNotification("Expense added successfully!", "success");
+      closeAddDialog();
+    } catch {
+      showNotification("Failed to add expense.", "error");
     }
   };
 
@@ -114,20 +101,15 @@ const Expenses = () => {
     try {
       const response = await fetch("http://localhost:5050/api/expenses/one", {
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${auth.accessToken}`,
-        },
+        credentials: "include",                 // ✅
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ expenseId }),
       });
-      if (response.ok) {
-        fetchAllEntries();
-        showNotification("Expense deleted successfully!", "success");
-      } else {
-        showNotification("Failed to delete expense.", "error");
-      }
-    } catch (error) {
-      showNotification("Error deleting expense.", "error");
+      if (!response.ok) throw new Error();
+      await fetchAllEntries();
+      showNotification("Expense deleted successfully!", "success");
+    } catch {
+      showNotification("Failed to delete expense.", "error");
     }
   };
 
@@ -135,26 +117,25 @@ const Expenses = () => {
     try {
       const response = await fetch("http://localhost:5050/api/expenses/all", {
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${auth.accessToken}`,
-        },
+        credentials: "include",                 // ✅
+        headers: { "Content-Type": "application/json" },
       });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        fetchAllEntries();
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        if (response.status === 403) {
+          showNotification(data.message || "Forbidden", "error");
+        } else {
+          throw new Error();
+        }
+      } else {
+        await fetchAllEntries();
         showNotification("All expenses deleted successfully!", "success");
-      } else if (response.status === 403) {
-        showNotification(data.message, "error");
       }
-    } catch (error) {
+    } catch {
       showNotification("Error deleting all expenses.", "error");
     }
   };
 
-  // Sorting
   const handleSort = (key) => {
     let direction = "asc";
     if (sortConfig.key === key && sortConfig.direction === "asc") {
@@ -171,61 +152,56 @@ const Expenses = () => {
 
   return (
     <div className="container">
-      {/* Sidebar */}
-      <aside className="sidebar">
+      <div className="tab-name">
         <ul>
           <li
             className={`menu-item ${activePage === "Enter Data" ? "active" : ""}`}
             onClick={() => setActivePage("Enter Data")}
           >
-            Enter Data
+            Table View
           </li>
           <li
             className={`menu-item ${activePage === "Stats" ? "active" : ""}`}
             onClick={() => setActivePage("Stats")}
           >
-            Stats
+            Chart View
           </li>
         </ul>
-      </aside>
+      </div>
 
-      {/* Main Content */}
+      <nav className="expsenses-navbar">
+        <div className="option-buttons" style={{ marginBottom: 12 }}>
+          <button className="option-button add" onClick={openAddDialog}>Add</button>
+          <button className="option-button delete" onClick={handleDeleteAllExpenses}>Delete All</button>
+          <ImportCSV setDataList={setDataList} />
+        </div>
+        <dialog ref={addDialogRef} onCancel={closeAddDialog}>
+          <h3 style={{ marginTop: 0 }}>Add Expense</h3>
+          <DynamicForm
+            fields={expenseFields}
+            initialValues={initialExpenseValues}
+            submitLabel="Save"
+            onSubmit={handleAddExpense}
+            onCancel={closeAddDialog}
+            resetOnCancel={true}
+            className="input-form"
+          />
+        </dialog>
+
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={() => setNotification({ message: "", type: "" })}
+        />
+      </nav>
+
       <main className="content">
+
         {activePage === "Enter Data" && (
-          <div>
-            <h2 className="section-title">Enter Data</h2>
-
-            {/* Primary actions */}
-            <div className="option-buttons" style={{ marginBottom: 12 }}>
-              <button className="button" onClick={openAddDialog}>Add</button>
-              <ImportCSV setDataList={setDataList} />
-              <button className="expenses-options-button" onClick={handleDeleteAllExpenses}>
-                Delete All
-              </button>
-            </div>
-
-            {/* Add Expense Modal */}
-            <dialog ref={addDialogRef} onCancel={closeAddDialog}>
-              <h3 style={{ marginTop: 0 }}>Add Expense</h3>
-              <DynamicForm
-                fields={expenseFields}
-                initialValues={initialExpenseValues}
-                submitLabel="Save"
-                onSubmit={handleAddExpense}
-                onCancel={closeAddDialog}     // <-- DynamicForm now owns Cancel/Close
-                resetOnCancel={true}          // <-- optional: clear inputs when canceling
-                className="input-form"
-              />
-            </dialog>
-
-            <Notification
-              message={notification.message}
-              type={notification.type}
-              onClose={() => setNotification({ message: "", type: "" })}
-            />
-
-            <h3 className="table-title">Existing Data</h3>
-            <div className="table-container">
+          <div className="table-container">
+            {isLoading ? (
+              <div style={{ padding: 16 }}>Loading…</div>
+            ) : (
               <table className="table">
                 <thead>
                   <tr>
@@ -237,24 +213,33 @@ const Expenses = () => {
                     <th onClick={() => handleSort("amount")}>Amount ⬍</th>
                     <th onClick={() => handleSort("card")}>Card ⬍</th>
                     <th onClick={() => handleSort("description")}>Description ⬍</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {dataList.map((data, index) => (
-                    <tr key={index}>
+                  {dataList.map((data) => (
+                    <tr key={data._id || `${data.date}-${data.amount}`}>
                       <td>{data.date}</td>
                       <td>{data.type}</td>
                       <td>{data.category}</td>
                       <td>{data.subCategory}</td>
                       <td>{data.occurrence}</td>
-                      <td>${data.amount}</td>
+                      <td>${Number(data.amount).toFixed(2)}</td>
                       <td>{data.card}</td>
                       <td>{data.description}</td>
+                      <td>
+                        <button
+                          className="option-button delete"
+                          onClick={() => handleDeleteExpense(data._id)}
+                        >
+                          Delete
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-            </div>
+            )}
           </div>
         )}
 
