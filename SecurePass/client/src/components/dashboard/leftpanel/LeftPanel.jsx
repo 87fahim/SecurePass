@@ -1,6 +1,6 @@
 import React from "react";
 import "./LeftPanel.css";
-
+import { BiSolidUserCircle } from "react-icons/bi";
 
 const LeftPanel = ({ onTabSelect }) => {
   const tabs = ["My Profile", "Passwords", "My Links", "Expenses", "Settings", "Help"];
@@ -14,7 +14,7 @@ const LeftPanel = ({ onTabSelect }) => {
           onClick={() => onTabSelect(tab)}
           className="tab-button"
         >
-          {tab}
+          <span>{tab}</span>
         </button>
       ))}
     </div>

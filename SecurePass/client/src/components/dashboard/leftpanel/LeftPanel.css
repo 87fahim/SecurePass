@@ -1,33 +1,21 @@
-.left-panel {
-  width: 250px;
-  background-color: var(--bg);
-  color: var(--text);
+.tab-button {
   display: flex;
-  flex-direction: column;
-  padding: 20px;
-  box-shadow: 2px 0 5px var(--shadow);
-  border-right: 1px solid var(--border);
-}
-
-.left-panel .tab-button {
-  background-color: var(--bg-light);
-  color: var(--text);
+  justify-content: space-between; /* text left, icon right */
+  align-items: center;
+  width: 100%;
+  padding: 10px 12px;
   border: none;
-  padding: 6px 8px;
-  text-align: left;
-  font-size: 16px;
+  background: transparent;
   cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease;
-  border-radius: 4px;
+  font-size: 15px;
+  color: var(--text);
 }
 
-.left-panel .tab-button:hover {
-  background-color: var(--btn-bg);
-  color: var(--bg-light);
+.tab-button:hover {
+  background: color-mix(in hsl, var(--accent) 15%, transparent);
 }
 
-.left-panel .tab-button:focus {
-  outline: none;
-  background-color: var(--btn-bg);
-  color: var(--bg);
+.tab-icon {
+  font-size: 1.2rem;
+  color: var(--text-muted);
 }
