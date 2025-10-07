@@ -1,9 +1,11 @@
 // linkmanager.jsx
 import React, { useEffect, useRef } from "react";
+import { createRoot } from "react-dom/client";
 import "./LinkManager.css";
-import { uid, escapeHtml, escapeAttr, db } from "./utils.js"; // removed getSwatchesForTheme
+import { uid, escapeHtml, escapeAttr, db } from "./utils.js";
 import { ui } from "./popup.js";
 import { useNotification } from "../../notifications/NotificationProvider.jsx";
+import { BiTrash } from "react-icons/bi";
 
 /**
  * LinkManager React Component
@@ -19,7 +21,7 @@ const LinkManager = ({ idPrefix = "lm" }) => {
     const root = rootRef.current;
     if (!root) return;
 
-    const $ = (id) => root.querySelector(`#${idPrefix}-${id}`);
+    const $ = (sid) => root.querySelector(`#${idPrefix}-${sid}`);
 
     // ------------------------------
     // Local Storage "DB"
@@ -139,6 +141,8 @@ const LinkManager = ({ idPrefix = "lm" }) => {
     function renderCategories() {
       if (!categoryListEl) return;
       categoryListEl.innerHTML = "";
+
+      // "All Links"
       const allItem = document.createElement("div");
       allItem.className = "category-item" + (state.selectedCategoryId === "all" ? " active" : "");
       allItem.tabIndex = 0;
@@ -149,6 +153,7 @@ const LinkManager = ({ idPrefix = "lm" }) => {
       allItem.addEventListener("click", () => selectCategory("all"));
       categoryListEl.appendChild(allItem);
 
+      // Each category
       state.categories.forEach((cat) => {
         const count = state.links.filter((l) => l.categoryId === cat.id).length;
         const item = document.createElement("div");
@@ -161,16 +166,17 @@ const LinkManager = ({ idPrefix = "lm" }) => {
         `;
         item.addEventListener("click", () => selectCategory(cat.id));
 
+        // Delete button with react-icons BiTrash
         const remove = document.createElement("button");
         remove.className = "icon-btn trash-btn";
         remove.type = "button";
         remove.setAttribute("aria-label", `Delete category ${cat.name}`);
         remove.title = "Delete category";
-        remove.innerHTML = `
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-            <path d="M9 3h6a1 1 0 0 1 1 1v1h4v2h-1v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7H4V5h4V4a1 1 0 0 1 1-1zm2 2v0h2V5h-2zM7 7v12h10V7H7zm3 2h2v8h-2V9zm4 0h2v8h-2V9z" fill="currentColor"/>
-          </svg>
-        `;
+
+        // Render BiTrash into the button (no inline SVG)
+        const iconRoot = createRoot(remove);
+        iconRoot.render(<BiTrash size={16} aria-hidden />);
+
         remove.addEventListener("click", async (e) => {
           e.stopPropagation();
           const cnt = state.links.filter((l) => l.categoryId === cat.id).length;
@@ -182,6 +188,7 @@ const LinkManager = ({ idPrefix = "lm" }) => {
           persist();
           render();
         });
+
         item.appendChild(remove);
         categoryListEl.appendChild(item);
       });
@@ -404,10 +411,9 @@ const LinkManager = ({ idPrefix = "lm" }) => {
             </div>
 
             <div className="actions">
-               <input id={id("searchLink")} type="search" placeholder="Search links…" />
+              <input id={id("searchLink")} type="search" placeholder="Search links…" />
               <button id={id("addLinkBtn")} className="btn">+ Add Link</button>
               <button id={id("editCategoryBtn")} className="btn" title="Rename/Delete current category">Edit Category…</button>
-             
             </div>
           </header>
 
