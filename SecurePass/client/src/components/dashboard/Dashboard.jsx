@@ -6,33 +6,26 @@ import Settings from "./settings/Settings";
 import Help from "./help/Help";
 import "./Dashboard.css";
 import Expenses from "../expenses/Expenses";
-import LinkManger from "./linkmanagement/LinkManager"
+import LinkManger from "./linkmanagement/LinkManager";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("My Profile");
 
   const renderActiveTab = () => {
     switch (activeTab) {
-      case "My Profile":
-        return <MyProfile />;
-      case "Passwords":
-        return <Passwords />;
-      case "Settings":
-        return <Settings />;
-      case "Help":
-        return <Help />;
-      case "Expenses":
-        return <Expenses/>
-      case "My Links":
-        return <LinkManger/>
-      default:
-        return null;
+      case "My Profile": return <MyProfile />;
+      case "Passwords":  return <Passwords />;
+      case "Settings":   return <Settings />;
+      case "Help":       return <Help />;
+      case "Expenses":   return <Expenses />;
+      case "My Links":   return <LinkManger />;
+      default:           return null;
     }
   };
 
   return (
     <div className="dashboard">
-      <LeftPanel onTabSelect={setActiveTab} />
+      <LeftPanel activeTab={activeTab} onTabSelect={setActiveTab} />
       <div className="dashboard-content">{renderActiveTab()}</div>
     </div>
   );
