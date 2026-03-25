@@ -4,6 +4,12 @@
   border: 2px solid var(--border);
   border-radius: 50%;
   cursor: pointer;
+  transition: transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.theme-option-active {
+  box-shadow: 0 0 0 3px var(--accent);
+  transform: scale(1.05);
 }
 
 /* Swatches pull from theme tokens */

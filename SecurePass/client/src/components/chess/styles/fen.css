@@ -1,0 +1,80 @@
+.fen-display-container {
+  margin:  0;
+  padding: 0 0.5rem;
+}
+
+.fen-content {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0 0.5rem;
+  margin-bottom: 5px;
+}
+
+.fen-input {
+  flex: 1;
+  padding: 0;
+  margin: 0;
+  border: none !important;
+  background: transparent;
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: var(--text);
+  outline: none !important;
+  box-shadow: none !important;
+  user-select: all;
+}
+
+.fen-input:focus {
+  outline: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.fen-input:focus-visible {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.fen-input:active {
+  border: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+}
+
+.fen-input::selection {
+  background: var(--accent, #007bff);
+  color: white;
+}
+
+.copy-btn {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--text);
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.copy-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}

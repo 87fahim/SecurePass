@@ -1,0 +1,136 @@
+.game-status {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text);
+  padding: 0.3rem;
+  background-color: var(--bg);
+  border-radius: 4px;
+  border-left: 4px solid var(--accent);
+  transition: all 0.3s ease;
+}
+
+.move-list {
+  padding: 0.35rem;
+
+  background-color: transparent;
+  font-family: inherit;
+}
+
+.move-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+
+.move-list-title {
+  color: var(--text);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.move-list-link {
+  border: none;
+  background: none;
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-align: left;
+  font-size: 0.72rem;
+  cursor: pointer;
+  padding: 0;
+  padding-left: 5px;
+  font-weight: 600;
+}
+.move-list-link:hover {
+  background-color: transparent;
+  color: var(--accent);
+
+}
+
+.move-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.move-column-title {
+  font-size: 0.7rem;
+  color: var(--text);
+  margin-bottom: 0.15rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.move-column ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+  text-align: center;
+}
+
+.move-column li {
+  display: block;
+  width: 100%;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.25;
+  padding: 0.04rem 0;
+  white-space: nowrap;
+}
+
+.move-popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+}
+
+.move-popup {
+  width: min(560px, 30vw);
+  max-height: 80vh;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.move-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+.move-popup-header strong{
+width: 100%;
+}
+.move-popup-close {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  border-radius: 4px;
+  padding: 0.25rem 0.55rem;
+  cursor: pointer;
+  font-size: 0.76rem;
+  width: 20%;
+}
+
+.settings-popup {
+  width: min(320px, 90vw);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.settings-popup-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+

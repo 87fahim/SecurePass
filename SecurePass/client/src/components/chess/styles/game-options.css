@@ -1,0 +1,232 @@
+.game-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.35rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  width: 210px;
+  flex-shrink: 0;
+}
+
+.option-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.option-section h4 {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-primary, var(--text));
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.mode-turn-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.mode-radios {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  background: transparent;
+  border: none;
+}
+
+.mode-radios label,
+.turn-radios label,
+.castling-checkboxes label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.08rem 0;
+  margin: 0;
+  line-height: 1.1;
+  color: var(--text-primary, var(--text));
+  width: auto;
+  user-select: none;
+}
+
+.turn-radios {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  background: transparent;
+  border: none;
+}
+
+.mode-radios label:hover,
+.turn-radios label:hover,
+.castling-checkboxes label:hover {
+  color: var(--primary, var(--accent));
+}
+
+.option-group-disabled {
+  opacity: 0.45;
+}
+
+.option-group-disabled label {
+  cursor: not-allowed;
+}
+
+.turn-radios input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  min-width: 12px;
+  min-height: 12px;
+  margin: 0;
+  padding: 0.1rem;
+  border: 1.5px solid var(--text-muted, #888);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.turn-radios input[type="radio"]:checked {
+  border-color: var(--primary, var(--accent));
+  background: var(--primary, var(--accent));
+}
+
+.turn-radios input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 50%;
+}
+
+.mode-radios input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  min-width: 12px;
+  min-height: 12px;
+  margin: 0;
+  padding: 0.1rem;
+  border: 1.5px solid var(--text-muted, #888);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.mode-radios input[type="radio"]:checked {
+  border-color: var(--primary, var(--accent));
+  background: var(--primary, var(--accent));
+}
+
+.mode-radios input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 50%;
+}
+
+.castling-checkboxes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.12rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.castling-checkboxes input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  min-width: 12px;
+  min-height: 12px;
+  margin: 0;
+  padding: 0.1rem;
+  border: 1.5px solid var(--text-muted, #888);
+  border-radius: 2px;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.castling-checkboxes input[type="checkbox"]:checked {
+  background: var(--primary, var(--accent));
+  border-color: var(--primary, var(--accent));
+}
+
+.castling-checkboxes input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 1px;
+  width: 3px;
+  height: 6px;
+  border: solid #fff;
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+}
+
+.color-control,
+.piece-color-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  font-size: 0.74rem;
+}
+
+.color-control input[type="color"] {
+  width: 26px;
+  height: 20px;
+  border: 1px solid var(--text-muted, #888);
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.piece-color-selectors {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.piece-color-control select {
+  min-width: 88px;
+  font-size: 0.72rem;
+  color: var(--text-primary, var(--text));
+  background: transparent;
+  border: 1px solid var(--text-muted, #888);
+  border-radius: 4px;
+  padding: 0.1rem 0.2rem;
+}

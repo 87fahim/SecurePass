@@ -1,47 +1,42 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-
-/* Light Theme */
 [data-theme="light"] {
-  /* Background */
+
   --bg-dark: hsl(0 0% 85%);
   --bg: hsl(0 0% 90%);
   --bg-light: hsl(0 0% 100%);
 
-  /* Text */
+
   --text: hsl(0 0% 5%);
   --text-muted: hsl(0 0% 30%);
 
-  /* Accent */
-  --accent: hsl(209, 80%, 46%); /* orange, tweakable */
 
-  /* Buttons */
+  --accent: hsl(209, 80%, 46%); 
+
+
   --btn-bg: hsl(209, 97%, 25%);;
   --btn-text: hsl(0 0% 95%);
   --btn-muted-bg: hsl(0 0% 30%);
   --btn-muted-text: hsl(0 0% 80%);
 
-  /* Borders & Shadows */
+
   --border: hsl(0 0% 80%);
   --shadow: hsl(0 0% 70%);
   
-  /* Feedback States */
+
   --error: hsl(0 65% 45%);
   --error-bg: hsl(0 70% 95%);
   --success: hsl(140 50% 35%);
   --success-bg: hsl(140 50% 90%);
 }
 
-/* Dark Theme */
+
 [data-theme="dark"] {
-  /* Background */
+
   --bg-dark: hsl(0 0% 10%);
   --bg: hsl(0 0% 15%);
   --bg-light: hsl(0 0% 20%);
 
-  /* Text */
+
   --text: hsl(0 0% 95%);
   --text-muted: hsl(0 0% 70%);
 
@@ -168,4 +163,4 @@ label {
   margin: 5px;
   text-align: center;
   width: 100%;
-}
+} 

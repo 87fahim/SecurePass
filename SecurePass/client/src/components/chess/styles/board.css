@@ -1,0 +1,144 @@
+.chess-board-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chess-board-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.ranks-column {
+  display: flex;
+  flex-direction: column;
+  width: 10px;
+  height: 400px;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.rank-label {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board-and-files {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.board-and-files.top {
+  margin-top: 0.35rem;
+}
+
+.board-and-files.bottom {
+  margin-bottom: 0.35rem;
+}
+
+.chess-board-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 50px);
+  grid-template-rows: repeat(8, 50px);
+  gap: 0;
+  background: var(--square-dark, #8b7355);
+  box-shadow: 0 4px 8px var(--shadow);
+  position: relative;
+}
+
+.engine-move-ghost {
+  position: absolute;
+  z-index: 50;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: engine-move-slide 280ms ease-in-out forwards;
+}
+
+.engine-move-ghost .piece {
+  width: 90%;
+  height: 90%;
+}
+
+@keyframes engine-move-slide {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--engine-move-dx, 0), var(--engine-move-dy, 0));
+    opacity: 1;
+  }
+}
+
+.files-row {
+  display: flex;
+  margin-top: 0.5rem;
+}
+
+.file-label {
+  width: 50px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.outside-tray {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.outside-tray-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.outside-tray-top {
+  margin-bottom: 0.1rem;
+}
+
+.outside-tray-bottom {
+  margin-top: 0.1rem;
+}
+
+.outside-piece {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  background: transparent;
+  border: none;
+}
+
+.outside-piece img,
+.outside-piece .piece {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.outside-piece:hover {
+  transform: scale(1.05);
+}

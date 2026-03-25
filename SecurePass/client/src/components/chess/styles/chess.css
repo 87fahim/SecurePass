@@ -1,0 +1,28 @@
+.chess-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 5px;
+  background-color: var(--bg-light);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.chess-main-content {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.chess-side-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.6rem;
+  min-width: 180px;
+}

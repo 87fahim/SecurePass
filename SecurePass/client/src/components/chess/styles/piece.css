@@ -1,0 +1,37 @@
+.piece {
+  width: 90%;
+  height: 9cqmax;
+  object-fit: contain;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.square {
+  position: relative;
+}
+
+.chess-wrapper.white-piece-classic .piece-white,
+.chess-wrapper.black-piece-classic .piece-black {
+  filter: none;
+}
+
+.chess-wrapper.white-piece-sapphire .piece-white,
+.chess-wrapper.black-piece-sapphire .piece-black {
+  filter: sepia(0.9) hue-rotate(175deg) saturate(2.4) brightness(1.05);
+}
+
+.chess-wrapper.white-piece-emerald .piece-white,
+.chess-wrapper.black-piece-emerald .piece-black {
+  filter: sepia(0.85) hue-rotate(80deg) saturate(2.3) brightness(1.05);
+}
+
+.chess-wrapper.white-piece-ruby .piece-white,
+.chess-wrapper.black-piece-ruby .piece-black {
+  filter: sepia(1) hue-rotate(315deg) saturate(2.2) brightness(1.02);
+}
+
+.chess-wrapper.white-piece-gold .piece-white,
+.chess-wrapper.black-piece-gold .piece-black {
+  filter: sepia(1) hue-rotate(8deg) saturate(2) brightness(1.08);
+}
